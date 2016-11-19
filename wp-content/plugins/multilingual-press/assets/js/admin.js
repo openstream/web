@@ -63,9 +63,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-var _window = window;
-var ajaxurl = _window.ajaxurl;
-var jQuery = _window.jQuery;
+var _window = window,
+    ajaxurl = _window.ajaxurl,
+    jQuery = _window.jQuery;
 
 /**
  * The MultilingualPress admin namespace.
@@ -286,8 +286,8 @@ var Controller = function () {
 
 
 	Controller.prototype.registerModule = function registerModule(routes, Constructor) {
-		var options = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
-		var callback = arguments.length <= 3 || arguments[3] === undefined ? null : arguments[3];
+		var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+		var callback = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
 
 		var moduleData = {
 			Constructor: Constructor,
@@ -347,7 +347,7 @@ var Model = function (_Backbone$Model) {
   * @param {Object} [options={}] - Optional. The constructor options. Defaults to an empty object.
   */
 	function Model() {
-		var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+		var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
 		_classCallCheck(this, Model);
 
@@ -518,7 +518,7 @@ var Router = function (_Backbone$Router) {
   * @param {Object} [options={}] - Optional. The constructor options. Defaults to an empty object.
   */
 	function Router() {
-		var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+		var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
 		_classCallCheck(this, Router);
 
@@ -555,7 +555,7 @@ var Toggler = exports.Toggler = function (_Backbone$View) {
   * @param {Object} [options={}] - Optional. The constructor options. Defaults to an empty object.
   */
 	function Toggler() {
-		var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+		var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
 		_classCallCheck(this, Toggler);
 
@@ -624,7 +624,7 @@ var Toggler = exports.Toggler = function (_Backbone$View) {
 
 exports.__esModule = true;
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 /**
  * Returns the name of the given module.
@@ -696,7 +696,7 @@ var NavMenus = function (_Backbone$View) {
   * @param {Object} [options={}] - Optional. The constructor options. Defaults to an empty object.
   */
 	function NavMenus() {
-		var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+		var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
 		_classCallCheck(this, NavMenus);
 
@@ -834,8 +834,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var $ = window.jQuery;
-var _window = window;
-var _ = _window._;
+var _window = window,
+    _ = _window._;
 
 // Internal pseudo-namespace for private data.
 // NOTE: _this is shared between ALL instances of this module! So far, there is only one instance, so no problem NOW.
@@ -854,7 +854,7 @@ var AddNewSite = function (_Backbone$View) {
   * @param {Object} [options={}] - Optional. The constructor options. Defaults to an empty object.
   */
 	function AddNewSite() {
-		var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+		var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
 		_classCallCheck(this, AddNewSite);
 
@@ -945,8 +945,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var $ = window.jQuery;
-var _window = window;
-var _ = _window._;
+var _window = window,
+    _ = _window._;
 
 // Internal pseudo-namespace for private data.
 // NOTE: _this is shared between ALL instances of this module! So far, there is only one instance, so no problem NOW.
@@ -965,7 +965,7 @@ var CopyPost = function (_Backbone$View) {
   * @param {Object} [options={}] - Optional. The constructor options. Defaults to an empty object.
   */
 	function CopyPost() {
-		var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+		var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
 		_classCallCheck(this, CopyPost);
 
@@ -1273,7 +1273,7 @@ var RelationshipControl = function (_Backbone$View) {
   * @param {Object} [options={}] - Optional. The constructor options. Defaults to an empty object.
   */
 	function RelationshipControl() {
-		var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+		var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
 		_classCallCheck(this, RelationshipControl);
 
@@ -1542,7 +1542,7 @@ var RemotePostSearch = function (_Backbone$View) {
   * @param {Object} [options={}] - Optional. The constructor options. Defaults to an empty object.
   */
 	function RemotePostSearch() {
-		var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+		var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
 		_classCallCheck(this, RemotePostSearch);
 
@@ -1722,7 +1722,7 @@ var TermTranslator = function (_Backbone$View) {
   * @param {Object} [options={}] - Optional. The constructor options. Defaults to an empty object.
   */
 	function TermTranslator() {
-		var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+		var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
 		_classCallCheck(this, TermTranslator);
 
@@ -1846,7 +1846,7 @@ var UserBackEndLanguage = function (_Backbone$View) {
   * @param {Object} [options={}] - Optional. The constructor options. Defaults to an empty object.
   */
 	function UserBackEndLanguage() {
-		var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+		var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
 		_classCallCheck(this, UserBackEndLanguage);
 
