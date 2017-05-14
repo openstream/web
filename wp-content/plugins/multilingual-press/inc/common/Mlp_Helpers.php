@@ -306,13 +306,13 @@ class Mlp_Helpers {
 
 		$languages = get_site_option( 'inpsyde_multilingual' );
 
-		if ( empty ( $languages[ $site_id ] ) )
+		if ( empty ( $languages[ $site_id ]['lang'] ) )
 			return '';
 
 		/** @var Mlp_Language_Api $api */
 		$api = self::$dependencies[ 'language_api' ];
 
-		$url = (string) $api->get_flag_by_language( $languages[ $site_id ], $site_id );
+		$url = (string) $api->get_flag_by_language( $languages[ $site_id ]['lang'], $site_id );
 
 		return $url;
 	}
@@ -466,6 +466,17 @@ class Mlp_Helpers {
 		}
 
 		$output .= '</ul></div>';
+
+		/**
+		 * Filters the output of the linked elements.
+		 *
+		 * @since 2.5.0
+		 *
+		 * @param string  $output The generated HTML
+		 * @param array[] $items  The language items
+		 * @param array   $params The passed arguments (including missing defaults).
+		 */
+		$output = (string) apply_filters( 'mlp_linked_elements_html', $output, $items, $params );
 
 		return $output;
 	}
