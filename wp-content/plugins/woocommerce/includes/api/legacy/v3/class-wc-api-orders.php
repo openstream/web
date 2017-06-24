@@ -243,8 +243,8 @@ class WC_API_Orders extends WC_API_Resource {
 				'meta'         => array_values( $item_meta ),
 			);
 
-			if ( in_array( 'products', $expand ) ) {
-				$_product_data = WC()->api->WC_API_Products->get_product( $product_id );
+			if ( in_array( 'products', $expand ) && is_object( $product ) ) {
+				$_product_data = WC()->api->WC_API_Products->get_product( $product->get_id() );
 
 				if ( isset( $_product_data['product'] ) ) {
 					$line_item['product_data'] = $_product_data['product'];
@@ -1583,7 +1583,7 @@ class WC_API_Orders extends WC_API_Resource {
 			}
 
 			$order_refund = array(
-				'id'         => $refund->id,
+				'id'         => $refund->get_id(),
 				'created_at' => $this->server->format_datetime( $refund->get_date_created() ? $refund->get_date_created()->getTimestamp() : 0, false, false ),
 				'amount'     => wc_format_decimal( $refund->get_amount(), 2 ),
 				'reason'     => $refund->get_reason(),
@@ -1665,9 +1665,9 @@ class WC_API_Orders extends WC_API_Resource {
 			// HTTP 201 Created
 			$this->server->send_status( 201 );
 
-			do_action( 'woocommerce_api_create_order_refund', $refund->id, $order_id, $this );
+			do_action( 'woocommerce_api_create_order_refund', $refund->get_id(), $order_id, $this );
 
-			return $this->get_order_refund( $order_id, $refund->id );
+			return $this->get_order_refund( $order_id, $refund->get_id() );
 		} catch ( WC_Data_Exception $e ) {
 			return new WP_Error( $e->getErrorCode(), $e->getMessage(), array( 'status' => 400 ) );
 		} catch ( WC_API_Exception $e ) {

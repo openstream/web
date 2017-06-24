@@ -233,12 +233,16 @@ class WC_Product_Data_Store_CPT extends WC_Data_Store_WP implements WC_Object_Da
 			'force_delete' => false,
 		) );
 
+		if ( ! $id ) {
+			return;
+		}
+
 		if ( $args['force_delete'] ) {
-			wp_delete_post( $product->get_id() );
+			wp_delete_post( $id );
 			$product->set_id( 0 );
 			do_action( 'woocommerce_delete_' . $post_type, $id );
 		} else {
-			wp_trash_post( $product->get_id() );
+			wp_trash_post( $id );
 			$product->set_status( 'trash' );
 			do_action( 'woocommerce_trash_' . $post_type, $id );
 		}
@@ -606,8 +610,11 @@ class WC_Product_Data_Store_CPT extends WC_Data_Store_WP implements WC_Object_Da
 				$terms[] = 'outofstock';
 			}
 
-			$rating  = max( array( 5, min( array( 1, round( $product->get_average_rating(), 0 ) ) ) ) );
-			$terms[] = 'rated-' . $rating;
+			$rating = min( 5, round( $product->get_average_rating(), 0 ) );
+
+			if ( $rating > 0 ) {
+				$terms[] = 'rated-' . $rating;
+			}
 
 			switch ( $product->get_catalog_visibility() ) {
 				case 'hidden' :

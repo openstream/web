@@ -73,7 +73,7 @@ class WC_Product_Variation_Data_Store_CPT extends WC_Product_Data_Store_CPT impl
 		/**
 		 * If a variation title is not in sync with the parent e.g. saved prior to 3.0, or if the parent title has changed, detect here and update.
 		 */
-		if ( version_compare( get_post_meta( $product->get_id(), '_product_version', true ), '3.0', '<' ) && 0 !== strpos( $post_object->post_title, get_post_field( 'post_title', $product->get_parent_id() ) ) ) {
+		if ( version_compare( get_post_meta( $product->get_id(), '_product_version', true ), '3.0', '<' ) && ( $parent_title = get_post_field( 'post_title', $product->get_parent_id() ) ) && 0 !== strpos( $post_object->post_title, $parent_title ) ) {
 			global $wpdb;
 
 			$new_title = $this->generate_product_title( $product );
@@ -116,6 +116,7 @@ class WC_Product_Variation_Data_Store_CPT extends WC_Product_Data_Store_CPT impl
 
 			$this->update_post_meta( $product, true );
 			$this->update_terms( $product, true );
+			$this->update_visibility( $product, true );
 			$this->update_attributes( $product, true );
 			$this->handle_updated_props( $product );
 
@@ -174,6 +175,7 @@ class WC_Product_Variation_Data_Store_CPT extends WC_Product_Data_Store_CPT impl
 
 		$this->update_post_meta( $product );
 		$this->update_terms( $product );
+		$this->update_visibility( $product, true );
 		$this->update_attributes( $product );
 		$this->handle_updated_props( $product );
 
@@ -203,11 +205,12 @@ class WC_Product_Variation_Data_Store_CPT extends WC_Product_Data_Store_CPT impl
 	protected function generate_product_title( $product ) {
 		$attributes = (array) $product->get_attributes();
 
-		// Don't include attributes if the product has 3+ attributes.
+		// Do not include attributes if the product has 3+ attributes.
 		$should_include_attributes = count( $attributes ) < 3;
 
-		// Don't include attributes if an attribute name has 2+ words.
-		if ( $should_include_attributes ) {
+		// Do not include attributes if an attribute name has 2+ words and the
+		// product has multiple attributes.
+		if ( $should_include_attributes && 1 < count( $attributes ) ) {
 			foreach ( $attributes as $name => $value ) {
 				if ( false !== strpos( $name, '-' ) ) {
 					$should_include_attributes = false;
@@ -279,7 +282,7 @@ class WC_Product_Variation_Data_Store_CPT extends WC_Product_Data_Store_CPT impl
 			'sku'               => get_post_meta( $product->get_parent_id(), '_sku', true ),
 			'manage_stock'      => get_post_meta( $product->get_parent_id(), '_manage_stock', true ),
 			'backorders'        => get_post_meta( $product->get_parent_id(), '_backorders', true ),
-			'stock_quantity'    => get_post_meta( $product->get_parent_id(), '_stock', true ),
+			'stock_quantity'    => wc_stock_amount( get_post_meta( $product->get_parent_id(), '_stock', true ) ),
 			'weight'            => get_post_meta( $product->get_parent_id(), '_weight', true ),
 			'length'            => get_post_meta( $product->get_parent_id(), '_length', true ),
 			'width'             => get_post_meta( $product->get_parent_id(), '_width', true ),
@@ -287,6 +290,7 @@ class WC_Product_Variation_Data_Store_CPT extends WC_Product_Data_Store_CPT impl
 			'tax_class'         => get_post_meta( $product->get_parent_id(), '_tax_class', true ),
 			'shipping_class_id' => absint( current( $this->get_term_ids( $product->get_parent_id(), 'product_shipping_class' ) ) ),
 			'image_id'          => get_post_thumbnail_id( $product->get_parent_id() ),
+			'purchase_note'     => get_post_meta( $product->get_parent_id(), '_purchase_note', true ),
 		) );
 
 		// Pull data from the parent when there is no user-facing way to set props.
@@ -307,6 +311,28 @@ class WC_Product_Variation_Data_Store_CPT extends WC_Product_Data_Store_CPT impl
 
 		if ( $force || array_key_exists( 'shipping_class_id', $changes ) ) {
 			wp_set_post_terms( $product->get_id(), array( $product->get_shipping_class_id( 'edit' ) ), 'product_shipping_class', false );
+		}
+	}
+
+	/**
+	 * Update visibility terms based on props.
+	 *
+	 * @since 3.0.0
+	 *
+	 * @param WC_Product $product
+	 * @param bool $force Force update. Used during create.
+	 */
+	protected function update_visibility( &$product, $force = false ) {
+		$changes = $product->get_changes();
+
+		if ( $force || array_intersect( array( 'stock_status' ), array_keys( $changes ) ) ) {
+			$terms = array();
+
+			if ( 'outofstock' === $product->get_stock_status() ) {
+				$terms[] = 'outofstock';
+			}
+
+			wp_set_post_terms( $product->get_id(), $terms, 'product_visibility', false );
 		}
 	}
 
