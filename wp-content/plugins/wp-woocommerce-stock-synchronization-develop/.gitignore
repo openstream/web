@@ -1,0 +1,15 @@
+# Eclipse
+/.buildpath
+/.project
+/.settings
+
+# Grunt
+/node_modules/
+
+# Deploy
+/deploy/
+
+# PHPUnit
+/phpunit.xml
+
+/vendor/
