@@ -27,8 +27,9 @@ class Mlp_Redirect_Response implements Mlp_Redirect_Response_Interface {
 	 */
 	public function redirect() {
 
-		if ( ! empty( $_GET['noredirect'] ) ) {
-			$this->save_session( $_GET['noredirect'] );
+		$language = (string) filter_input( INPUT_GET, 'noredirect' );
+		if ( '' !== $language ) {
+			$this->save_session( $language );
 
 			return false;
 		}
@@ -41,29 +42,30 @@ class Mlp_Redirect_Response implements Mlp_Redirect_Response_Interface {
 			return false;
 		}
 
-		/**
-		 * Filters the redirect URL.
-		 *
-		 * @param string $url             Redirect URL.
-		 * @param array  $redirect_match  Redirect match. {
-		 *                                    'priority' => int
-		 *                                    'url'      => string
-		 *                                    'language' => string
-		 *                                    'site_id'  => int
-		 *                                }
-		 * @param int    $current_site_id Current site ID.
-		 */
-		$url = (string) apply_filters( 'mlp_redirect_url', $redirect_match['url'], $redirect_match, $current_site_id );
-		if ( ! $url ) {
+		if ( empty( $redirect_match['url'] ) ) {
+			return false;
+		}
+
+		if ( ! isset( $redirect_match['language'] ) ) {
 			return false;
 		}
 
 		$this->save_session( $redirect_match['language'] );
 
-		wp_redirect( $url );
+		wp_redirect( $redirect_match['url'] );
 		mlp_exit();
 
 		return true;
+	}
+
+	/**
+	 * Registers the redirection using the appropriate hook.
+	 *
+	 * @return void
+	 */
+	public function register() {
+
+		add_action( 'template_redirect', array( $this, 'redirect' ), 1 );
 	}
 
 	/**

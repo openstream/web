@@ -74,31 +74,58 @@ class Mlp_Content_Relations implements Mlp_Content_Relations_Interface {
 			$type
 		);
 
-		$existing = $this->get_relations( $source_site_id, $source_content_id, $type );
+		if ( $translation_ids['ml_source_blogid'] === $target_site_id ) {
+			$target_site_id = $source_site_id;
 
-		if ( isset( $existing[ $target_site_id ] ) ) {
-			if ( $existing[ $target_site_id ] === $target_content_id ) {
-				return TRUE;
+			$target_content_id = $source_content_id;
+		}
+
+		$existing = $this->get_relations(
+			$translation_ids['ml_source_blogid'],
+			$translation_ids['ml_source_elementid'],
+			$type
+		);
+
+		if ( isset( $existing[ $source_site_id ], $existing[ $target_site_id ] ) ) {
+			if (
+				$existing[ $source_site_id ] === $source_content_id
+				&& $existing[ $target_site_id ] === $target_content_id
+			) {
+				return true;
+			}
+
+			if ( $existing[ $source_site_id ] !== $source_content_id ) {
+				$target_site_id = $source_site_id;
+
+				$target_content_id = $source_content_id;
 			}
 
 			$this->delete_relation(
-				$translation_ids[ 'ml_source_blogid' ],
+				$translation_ids['ml_source_blogid'],
 				$target_site_id,
-				$translation_ids[ 'ml_source_elementid' ],
-				0, // old content id
+				$translation_ids['ml_source_elementid'],
+				0,
 				$type
 			);
+		} elseif ( isset( $existing[ $target_site_id ] ) ) {
+			$target_site_id = $source_site_id;
+
+			$target_content_id = $source_content_id;
 		}
 
 		$result = (bool) $this->insert_row(
-			$translation_ids[ 'ml_source_blogid' ],
+			$translation_ids['ml_source_blogid'],
 			$target_site_id,
-			$translation_ids[ 'ml_source_elementid' ],
+			$translation_ids['ml_source_elementid'],
 			$target_content_id,
 			$type
 		);
 
-		$cache_key = $this->get_cache_key( $source_site_id, $source_content_id, $type );
+		$cache_key = $this->get_cache_key(
+			$translation_ids['ml_source_blogid'],
+			$translation_ids['ml_source_elementid'],
+			$type
+		);
 		wp_cache_delete( $cache_key, $this->cache_group );
 
 		do_action(
@@ -144,7 +171,7 @@ class Mlp_Content_Relations implements Mlp_Content_Relations_Interface {
 		}
 
 		$sql = "
-SELECT t.ml_blogid as site_id, t.ml_elementid as content_id
+SELECT DISTINCT t.ml_blogid as site_id, t.ml_elementid as content_id
 FROM {$this->link_table} s
 INNER JOIN {$this->link_table} t
 ON s.ml_source_blogid = t.ml_source_blogid
@@ -164,7 +191,7 @@ WHERE s.ml_blogid = %d
 		$output = array();
 
 		foreach ( $results as $set ) {
-			$output[ (int) $set[ 'site_id' ] ] = (int) $set[ 'content_id' ];
+			$output[ (int) $set['site_id'] ] = (int) $set['content_id'];
 		}
 
 		wp_cache_set( $cache_key, $output, $this->cache_group );
@@ -203,12 +230,12 @@ WHERE s.ml_blogid = %d
 		);
 
 		if ( 0 < $target_site_id ) {
-			$where[ 'ml_blogid' ] = $target_site_id;
+			$where['ml_blogid'] = $target_site_id;
 			$where_format[] = '%d';
 		}
 
 		if ( 0 < $target_content_id ) {
-			$where[ 'ml_elementid' ] = $target_content_id;
+			$where['ml_elementid'] = $target_content_id;
 			$where_format[] = '%d';
 		}
 
@@ -263,7 +290,7 @@ WHERE s.ml_blogid = %d
 			$this->clean_up_duplicated_translation_ids( $result, $type );
 		}
 
-		return $result[ 0 ];
+		return $result[0];
 	}
 
 	/**
@@ -351,12 +378,12 @@ WHERE s.ml_blogid = %d
 		$result = (int) $this->wpdb->update(
 			$this->link_table,
 			array(
-				'ml_source_blogid'    => $relations[ 0 ][ 'ml_source_blogid' ],
-				'ml_source_elementid' => $relations[ 0 ][ 'ml_source_elementid' ],
+				'ml_source_blogid'    => $relations[0]['ml_source_blogid'],
+				'ml_source_elementid' => $relations[0]['ml_source_elementid'],
 			),
 			array(
-				'ml_source_blogid'    => $relations[ 1 ][ 'ml_source_blogid' ],
-				'ml_source_elementid' => $relations[ 1 ][ 'ml_source_elementid' ],
+				'ml_source_blogid'    => $relations[1]['ml_source_blogid'],
+				'ml_source_elementid' => $relations[1]['ml_source_elementid'],
 				'ml_type'             => $type,
 			),
 			array(

@@ -11,7 +11,20 @@
 interface Mlp_Language_Negotiation_Interface {
 
 	/**
-	 * @return string
+	 * @param array $args
+	 *
+	 * @return array
 	 */
-	public function get_redirect_match();
+	public function get_redirect_match( array $args = array() );
+
+	/**
+	 * Returns the redirect target data for all available language versions.
+	 *
+	 * @since 2.10.0
+	 *
+	 * @param array $args Optional. Arguments required to determine the redirect targets. Defaults to empty array.
+	 *
+	 * @return array[] Array of redirect targets.
+	 */
+	public function get_redirect_targets( array $args = array() );
 }

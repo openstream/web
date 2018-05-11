@@ -1,9 +1,9 @@
 === MultilingualPress ===
 Contributors: inpsyde, toscho, tfrommen, Bueltge, hughwillfayle, nullbyte, Biont, ChriCo, dnaber-de, paddelboot
 Tags: bilingual, i18n, international, internationalization, l10n, lang, language, localization, multi, multilanguage, multilingual, multisite, network, translation
-Requires at least: 4.2
-Tested up to: 4.8
-Stable tag: 2.6.0
+Requires at least: 4.7
+Tested up to: 4.9
+Stable tag: 2.11.1
 
 Create a fast translation network on WordPress multisite.
 
@@ -111,8 +111,65 @@ tutorial](http://make.multilingualpress.org/2014/02/how-to-install-multi-site/).
 10. New user settings for the sitewide _Backend Language_ and the _Language Redirect_.
 11. New _Language Switcher_ widget.
 12. Frontend view of a post showing both the _Quicklinks_ and the _Language Switcher_ widget.
+13. MultilingualPress is recommended by WP Engine as a solution for multilingual websites.
 
 == Changelog ==
+
+= 2.11.1 =
+- Bump minimum WP version to 4.7 in order to prevent issues, see [#301](https://github.com/inpsyde/MultilingualPress/pull/301), props @lkraav.
+- Avoid error from `STRICT_TRANS_TABLES` in `@@sqlmode`, see [#302](https://github.com/inpsyde/MultilingualPress/issues/302) and [#303](https://github.com/inpsyde/MultilingualPress/pull/303), props @rebeccahum, @nickdaugherty.
+- Use Union Jack as English flag.
+
+= 2.11.0 =
+- Post Translation: Allow for translation of scheduled posts, see [#296](https://github.com/inpsyde/MultilingualPress/pull/296).
+- Post Translation: Introduce new filter, `multilingualpress.is_related_post_editable`, for the remote post editing capability check.
+
+= 2.10.2 =
+- Redirect: Fix redirection not working correctly (esp. for front page).
+- Post Translation: Fix slashes being stripped off post data.
+
+= 2.10.1 =
+- Site Settings: Fix updating incorrect site.
+
+= 2.10.0 =
+- Add PHP_CodeSniffer configs, and adapt code accordingly, see [#283](https://github.com/inpsyde/MultilingualPress/pull/283).
+- Relations: Include scheduled posts in the remote post search, see [#284](https://github.com/inpsyde/MultilingualPress/issues/284).
+- Relations: Introduce a new filter, `multilingualpress.remote_post_search_arguments`, to manipulate the query arguments for the remote post search.
+- Quicklinks: Introduce a new filter, `multilingualpress.quicklinks_nofollow`, to render nofollow quicklinks, see [#251](https://github.com/inpsyde/MultilingualPress/issues/251).
+- Post Translation: Fix meta box not rendered for CPTs with custom capabilities, see [#286](https://github.com/inpsyde/MultilingualPress/issues/286).
+- Redirection: Introduce JavaScript-based redirection.
+
+= 2.9.2 =
+- Languages API: Fetch the language with the highest priority as site language.
+
+= 2.9.1 =
+- Translations: Restrict post type archive translations to active post types only.
+
+= 2.9.0 =
+- Activation: Initialize the plugin upon activation, see [issue #281](https://github.com/inpsyde/MultilingualPress/issues/281).
+- Translations: Introduce a new filter, `multilingualpress.active_taxonomies`, to modify the allowed taxonomies, see [issue #282](https://github.com/inpsyde/MultilingualPress/issues/282).
+
+= 2.8.1 =
+- Content Relations: Fix always disconnecting the source post.
+
+= 2.8.0 =
+- Content Relations: Fix various (edge case) issue around adding a new post to an existing relationship, see [issue #280](https://github.com/inpsyde/MultilingualPress/issues/280).
+- DB: Always (try to) delete a table before creating it anew, see [issue #240](https://github.com/inpsyde/MultilingualPress/issues/240).
+- hreflang: Introduce a new filter, `multilingualpress.render_hreflang`, to force or prevent rendering.
+- hreflang: Introduce a new filter, `multilingualpress.hreflang_post_status`, to restrict post translations, and only query published posts, see [issue #276](https://github.com/inpsyde/MultilingualPress/issues/276) and [issue #277](https://github.com/inpsyde/MultilingualPress/issues/277).
+- Language API: Introduce a new argument, `post_status`, to restrict post translations.
+- Redirect: Introduce a new filter, `multilingualpress.redirect_post_status`, to restrict post redirect targets, and only query published posts, see [pull request #278](https://github.com/inpsyde/MultilingualPress/pull/278), props @diedexx.
+
+= 2.7.1 =
+- Redirect: Add optional `$args` argument to `Mlp_Language_Negotiation::get_redirect_matches()` and pass it on to `Mlp_Language_Api::get_translations()`, see [pull request #271](https://github.com/inpsyde/MultilingualPress/pull/271), props @diedexx.
+- Redirect: Add `content_id` to redirect matches, see [pull request #271](https://github.com/inpsyde/MultilingualPress/pull/271), props @diedexx.
+- Relations: Delete all relationship data with the last relationship, see [issue #273](https://github.com/inpsyde/MultilingualPress/issues/273).
+
+= 2.7.0 =
+- Redirect: Introduce a new filter, `multilingualpress.redirect_targets`, to manipulate the found redirect targets, see [pull request #265](https://github.com/inpsyde/MultilingualPress/pull/265), props @diedexx.
+- hreflang: Introduce new filters `multilingualpress.hreflang_type` and `multilingualpress.hreflang_translations`, see [pull request #267](https://github.com/inpsyde/MultilingualPress/pull/267), props @diedexx.
+- hreflang: Bump priority for `hreflang` HTTP headers to `11`.
+- Redirect: Bump default value for language-only priority factor.
 
 = 2.6.0 =
 - Types: Introduce null implementations for language and translation interfaces, `Mlp_Null_Language` and `Mlp_Null_Translation`.

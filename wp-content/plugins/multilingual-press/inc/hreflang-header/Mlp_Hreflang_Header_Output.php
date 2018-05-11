@@ -8,6 +8,24 @@
 class Mlp_Hreflang_Header_Output {
 
 	/**
+	 * Output type.
+	 *
+	 * @since 2.7.0
+	 *
+	 * @var int
+	 */
+	const TYPE_HTTP_HEADER = 1;
+
+	/**
+	 * Output type.
+	 *
+	 * @since 2.7.0
+	 *
+	 * @var int
+	 */
+	const TYPE_HTML_LINK_TAG = 2;
+
+	/**
 	 * @var Mlp_Language_Api_Interface
 	 */
 	private $language_api;
@@ -45,6 +63,26 @@ class Mlp_Hreflang_Header_Output {
 			return;
 		}
 
+		/**
+		 * Filters if the hreflang links should be rendered.
+		 *
+		 * @since 2.8.0
+		 *
+		 * @param bool     $render       Whether or not hreflang links should be rendered.
+		 * @param string[] $translations The available translations to be used for hreflang links.
+		 */
+		if ( ! apply_filters( 'multilingualpress.render_hreflang', count( $translations ) > 1, $translations ) ) {
+			return;
+		}
+
+		$tags = array(
+			'link' => array(
+				'href'     => true,
+				'hreflang' => true,
+				'rel'      => true,
+			),
+		);
+
 		foreach ( $translations as $lang => $url ) {
 			$html = sprintf(
 				'<link rel="alternate" hreflang="%1$s" href="%2$s">',
@@ -59,7 +97,9 @@ class Mlp_Hreflang_Header_Output {
 			 * @param string $lang Language code (e.g., 'en-US').
 			 * @param string $url  Target URL.
 			 */
-			echo apply_filters( 'mlp_hreflang_html', $html, $lang, $url );
+			$html = apply_filters( 'mlp_hreflang_html', $html, $lang, $url );
+
+			echo wp_kses( $html, $tags );
 		}
 	}
 
@@ -78,6 +118,11 @@ class Mlp_Hreflang_Header_Output {
 
 		$translations = $this->get_translations();
 		if ( ! $translations ) {
+			return;
+		}
+
+		/** This filter is documented in inc/hreflang-header/Mlp_Hreflang_Header_Output.php */
+		if ( ! apply_filters( 'multilingualpress.render_hreflang', count( $translations ) > 1, $translations ) ) {
 			return;
 		}
 
@@ -115,9 +160,21 @@ class Mlp_Hreflang_Header_Output {
 
 		$this->translations = array();
 
+		/**
+		 * Filters the allowed status for posts to be included in hreflang links.
+		 *
+		 * @since 2.8.0
+		 *
+		 * @param string[] $post_status Allowed post status.
+		 */
+		$post_status = (array) apply_filters( 'multilingualpress.hreflang_post_status', array(
+			'publish',
+		) );
+
 		/** @var Mlp_Translation_Interface[] $translations */
 		$translations = $this->language_api->get_translations( array(
 			'include_base' => true,
+			'post_status'  => $post_status,
 		) );
 		if ( ! $translations ) {
 			return $this->translations;
@@ -135,6 +192,15 @@ class Mlp_Hreflang_Header_Output {
 				$this->translations[ $language->get_name( 'http' ) ] = $url;
 			}
 		}
+
+		/**
+		 * Filters the available translations to be used for hreflang links.
+		 *
+		 * @since 2.7.0
+		 *
+		 * @param string[] $translations The available translations to be used for hreflang links.
+		 */
+		$this->translations = apply_filters( 'multilingualpress.hreflang_translations', $this->translations );
 
 		return $this->translations;
 	}
