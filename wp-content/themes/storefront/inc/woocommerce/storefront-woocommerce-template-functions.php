@@ -173,7 +173,7 @@ if ( ! function_exists( 'storefront_product_columns_wrapper' ) ) {
 	 */
 	function storefront_product_columns_wrapper() {
 		$columns = storefront_loop_columns();
-		echo '<div class="columns-' . intval( $columns ) . '">';
+		echo '<div class="columns-' . absint( $columns ) . '">';
 	}
 }
 
@@ -185,7 +185,13 @@ if ( ! function_exists( 'storefront_loop_columns' ) ) {
 	 * @since  1.0.0
 	 */
 	function storefront_loop_columns() {
-		return apply_filters( 'storefront_loop_columns', 3 ); // 3 products per row
+		$columns = 3; // 3 products per row
+
+		if ( function_exists( 'wc_get_default_products_per_row' ) ) {
+			$columns = wc_get_default_products_per_row();
+		}
+
+		return apply_filters( 'storefront_loop_columns', $columns );
 	}
 }
 
@@ -366,54 +372,184 @@ if ( ! function_exists( 'storefront_handheld_footer_bar_account_link' ) ) {
 	}
 }
 
-if ( ! function_exists( 'storefront_woocommerce_init_structured_data' ) ) {
+if ( ! function_exists( 'storefront_single_product_pagination' ) ) {
 	/**
-	 * WARNING: This function will be deprecated in Storefront v2.2.
+	 * Single Product Pagination
 	 *
-	 * Generates product category structured data.
-	 *
-	 * Hooked into `woocommerce_before_shop_loop_item` action hook.
+	 * @since 2.3.0
 	 */
-	function storefront_woocommerce_init_structured_data() {
-		if ( ! is_product_category() ) {
+	function storefront_single_product_pagination() {
+		if ( class_exists( 'Storefront_Product_Pagination' ) || true !== get_theme_mod( 'storefront_product_pagination' ) ) {
 			return;
 		}
 
+		// Show only products in the same category?
+		$same_category = apply_filters( 'storefront_single_product_pagination_same_category', false );
+
+		// Get previous and next products
+		$previous_product = get_previous_post( $same_category );
+		$next_product     = get_next_post( $same_category );
+
+		if ( ! $previous_product && ! $next_product ) {
+			return;
+		}
+
+		if ( $previous_product ) {
+			$previous_product = wc_get_product( $previous_product->ID );
+		}
+
+		if ( $next_product ) {
+			$next_product = wc_get_product( $next_product->ID );
+		}
+
+		?>
+		<nav class="storefront-product-pagination" aria-label="<?php esc_attr_e( 'More products', 'storefront' ); ?>">
+			<?php if ( $previous_product && $previous_product->is_visible() ) : ?>
+				<?php previous_post_link( '%link', wp_kses_post( $previous_product->get_image() ) . '<span class="storefront-product-pagination__title">%title</span>', $same_category, '', 'product_cat' ); ?>
+			<?php endif; ?>
+
+			<?php if ( $next_product && $next_product->is_visible() ) : ?>
+				<?php next_post_link( '%link', wp_kses_post( $next_product->get_image() ) . '<span class="storefront-product-pagination__title">%title</span>', $same_category, '', 'product_cat' ); ?>
+			<?php endif; ?>
+		</nav><!-- .storefront-product-pagination -->
+		<?php
+	}
+}
+
+if ( ! function_exists( 'storefront_sticky_single_add_to_cart' ) ) {
+	/**
+	 * Sticky Add to Cart
+	 *
+	 * @since 2.3.0
+	 */
+	function storefront_sticky_single_add_to_cart() {
 		global $product;
 
-		$json['@type']             = 'Product';
-		$json['@id']               = 'product-' . get_the_ID();
-		$json['name']              = get_the_title();
-		$json['image']             = wp_get_attachment_url( $product->get_image_id() );
-		$json['description']       = get_the_excerpt();
-		$json['url']               = get_the_permalink();
-		$json['sku']               = $product->get_sku();
-
-		if ( $product->get_rating_count() ) {
-			$json['aggregateRating'] = array(
-				'@type'                => 'AggregateRating',
-				'ratingValue'          => $product->get_average_rating(),
-				'ratingCount'          => $product->get_rating_count(),
-				'reviewCount'          => $product->get_review_count(),
-			);
-		}
-
-		$json['offers'] = array(
-			'@type'                  => 'Offer',
-			'priceCurrency'          => get_woocommerce_currency(),
-			'price'                  => $product->get_price(),
-			'itemCondition'          => 'http://schema.org/NewCondition',
-			'availability'           => 'http://schema.org/' . $stock = ( $product->is_in_stock() ? 'InStock' : 'OutOfStock' ),
-			'seller'                 => array(
-				'@type'                => 'Organization',
-				'name'                 => get_bloginfo( 'name' ),
-			),
-		);
-
-		if ( ! isset( $json ) ) {
+		if ( class_exists( 'Storefront_Sticky_Add_to_Cart' ) || true !== get_theme_mod( 'storefront_sticky_add_to_cart' ) ) {
 			return;
 		}
 
-		Storefront::set_structured_data( apply_filters( 'storefront_woocommerce_structured_data', $json ) );
+		if ( ! is_product() ) {
+			return;
+		}
+
+		$params = apply_filters( 'storefront_sticky_add_to_cart_params', array(
+			'trigger_class' => 'entry-summary'
+		) );
+
+		wp_localize_script( 'storefront-sticky-add-to-cart', 'storefront_sticky_add_to_cart_params', $params );
+
+		wp_enqueue_script( 'storefront-sticky-add-to-cart' );
+		?>
+			<section class="storefront-sticky-add-to-cart">
+				<div class="col-full">
+					<div class="storefront-sticky-add-to-cart__content">
+						<?php echo wp_kses_post( woocommerce_get_product_thumbnail() ); ?>
+						<div class="storefront-sticky-add-to-cart__content-product-info">
+							<span class="storefront-sticky-add-to-cart__content-title"><?php esc_attr_e( 'You\'re viewing:', 'storefront' ); ?> <strong><?php the_title(); ?></strong></span>
+							<span class="storefront-sticky-add-to-cart__content-price"><?php echo wp_kses_data( $product->get_price_html() ); ?></span>
+							<?php echo wp_kses_post( wc_get_rating_html( $product->get_average_rating() ) ); ?>
+						</div>
+						<a href="<?php echo esc_url( $product->add_to_cart_url() ); ?>" class="storefront-sticky-add-to-cart__content-button button alt">
+							<?php echo esc_attr( $product->add_to_cart_text() ); ?>
+						</a>
+					</div>
+				</div>
+			</section><!-- .storefront-sticky-add-to-cart -->
+		<?php
+	}
+}
+
+if ( ! function_exists( 'storefront_woocommerce_brands_homepage_section' ) ) {
+	/**
+	 * Display WooCommerce Brands
+	 * Hooked into the `homepage` action in the homepage template.
+	 * Requires WooCommerce Brands.
+	 *
+	 * @since  2.3.0
+	 * @link   https://woocommerce.com/products/brands/
+	 * @uses   apply_filters()
+	 * @uses   storefront_do_shortcode()
+	 * @uses   wp_kses_post()
+	 * @uses   do_action()
+	 * @return void
+	 */
+	function storefront_woocommerce_brands_homepage_section() {
+		$args = apply_filters( 'storefront_woocommerce_brands_args', array(
+			'number'     => 6,
+			'columns'    => 4,
+			'orderby'    => 'name',
+			'show_empty' => false,
+			'title'      => __( 'Shop by Brand', 'storefront' ),
+		) );
+
+		$shortcode_content = storefront_do_shortcode( 'product_brand_thumbnails', apply_filters( 'storefront_woocommerce_brands_shortcode_args', array(
+			'number'     => absint( $args['number'] ),
+			'columns'    => absint( $args['columns'] ),
+			'orderby'    => esc_attr( $args['orderby'] ),
+			'show_empty' => (bool) $args['show_empty'],
+		) ) );
+
+		echo '<section class="storefront-product-section storefront-woocommerce-brands" aria-label="' . esc_attr__( 'Product Brands', 'storefront' ) . '">';
+
+		do_action( 'storefront_homepage_before_woocommerce_brands' );
+
+		echo '<h2 class="section-title">' . wp_kses_post( $args['title'] ) . '</h2>';
+
+		do_action( 'storefront_homepage_after_woocommerce_brands_title' );
+
+		echo $shortcode_content;
+
+		do_action( 'storefront_homepage_after_woocommerce_brands' );
+
+		echo '</section>';
+	}
+}
+
+if ( ! function_exists( 'storefront_woocommerce_brands_archive' ) ) {
+	/**
+	 * Display brand image on brand archives
+	 * Requires WooCommerce Brands.
+	 *
+	 * @since  2.3.0
+	 * @link   https://woocommerce.com/products/brands/
+	 * @uses   is_tax()
+	 * @uses   wp_kses_post()
+	 * @uses   get_brand_thumbnail_image()
+	 * @uses   get_queried_object()
+	 * @return void
+	 */
+	function storefront_woocommerce_brands_archive() {
+		if ( is_tax( 'product_brand' ) ) {
+			echo wp_kses_post( get_brand_thumbnail_image( get_queried_object() ) );
+		}
+	}
+}
+
+if ( ! function_exists( 'storefront_woocommerce_brands_single' ) ) {
+	/**
+	 * Output product brand image for use on single product pages
+	 * Requires WooCommerce Brands.
+	 *
+	 * @since  2.3.0
+	 * @link   https://woocommerce.com/products/brands/
+	 * @uses   storefront_do_shortcode()
+	 * @uses   wp_kses_post()
+	 * @return void
+	 */
+	function storefront_woocommerce_brands_single() {
+		$brand = storefront_do_shortcode( 'product_brand', array(
+			'class' => ''
+		) );
+
+		if ( empty( $brand ) ) {
+			return;
+		}
+
+		?>
+		<div class="storefront-wc-brands-single-product">
+			<?php echo wp_kses_post( $brand ); ?>
+		</div>
+		<?php
 	}
 }
