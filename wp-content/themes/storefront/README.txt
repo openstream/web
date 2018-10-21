@@ -2,8 +2,8 @@
 Contributors: automattic, tiagonoronha, jameskoster
 Requires at least: 4.7
 Tested up to: 4.9
-Stable tag: 2.3.1
-Version: 2.3.1
+Stable tag: 2.3.4
+Version: 2.3.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: e-commerce, two-columns, left-sidebar, right-sidebar, custom-background, custom-colors, custom-header, custom-menu, featured-images, full-width-template, threaded-comments, accessibility-ready, rtl-language-support, footer-widgets, sticky-post, theme-options
@@ -48,6 +48,36 @@ To the best of our knowledge, Google doesn’t track nor share end user data.
 Privacy Policy for the Google Fonts API: https://developers.google.com/fonts/faq#what_does_using_the_google_fonts_api_mean_for_the_privacy_of_my_users
 
 == Changelog ==
+
+= 2.3.4 - 2018-10-11 =
+* Tweak - Introduced new styles for enhanced compatibility with Composite Products 3.14.0 and Product Bundles 5.8.0.
+* Fix - Improved touch support for dropdowns.
+* Fix - Added missing RTL support to the Guided Tour in the Customizer.
+* Fix - Added a fix to prevent starter content from showing up if not entering the customizer through the NUX.
+* Fix - Fixed clearing of cart item rows on handheld screens.
+* Fix - Changed store notice `z-index` value to prevent overlap with the handheld footer bar.
+
+= 2.3.3 - 2018-07-18 =
+* Tweak - Removed `user-scalable=no` from the viewport meta tag to allow for zooming on mobile browsers.
+* Tweak - Allow for a flexible height on the site logo.
+* Tweak - Only try to add title from `data-title` to responsive table columns that have this attribute set.
+* Fix - Prevent select box from overflowing its wrapping container.
+* Fix - Fixed handheld sub navigation dropdown toggle color. It now uses the same color set for the links.
+* Fix - Fixed price label direction when in RTL.
+* Fix - Removed related products static number of columns. It will now use the value from the wrapper `ul.products`.
+* Fix - Removed font weight from default link styles for better compatibility with design plugins.
+* Fix - Fixed H3 scopping in WooCommerce Brands integration.
+* Fix - Fixed bundle layout issues in Composite Products integration.
+
+= 2.3.2 - 2018-05-30 =
+* Tweak - Replaced `wp_kses_data()` with `wp_kses_post()` on price outputs in the Mini-Cart and Sticky Add-To-Cart.
+* Tweak - Added support for `tel` type fields in forms.
+* Tweak - Replaced legacy homepage shortcodes with the new `[products]` shortcode.
+* Fix - WooCommerce Memberships mobile table styling.
+* Fix - Moved margin from `.woocommerce-breadcrumb` to the new `.storefront-breadcrumb` wrapper.
+* Fix - Fixed alignment of mobile menu toggle.
+* Fix - Removed H1 from logo when the Homepage is not the Blog page.
+* Dev - Removed legacy Sass mixins.
 
 = 2.3.1 - 2018-05-10 =
 * Feature - Add support for GDPR features soon to be introduced in WordPress 4.9.6.

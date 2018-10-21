@@ -72,7 +72,7 @@ if ( ! function_exists( 'storefront_cart_link' ) ) {
 	function storefront_cart_link() {
 		?>
 			<a class="cart-contents" href="<?php echo esc_url( wc_get_cart_url() ); ?>" title="<?php esc_attr_e( 'View your shopping cart', 'storefront' ); ?>">
-				<span class="amount"><?php echo wp_kses_data( WC()->cart->get_cart_subtotal() ); ?></span> <span class="count"><?php echo wp_kses_data( sprintf( _n( '%d item', '%d items', WC()->cart->get_cart_contents_count(), 'storefront' ), WC()->cart->get_cart_contents_count() ) );?></span>
+				<?php echo wp_kses_post( WC()->cart->get_cart_subtotal() ); ?> <span class="count"><?php echo wp_kses_data( sprintf( _n( '%d item', '%d items', WC()->cart->get_cart_contents_count(), 'storefront' ), WC()->cart->get_cart_contents_count() ) );?></span>
 			</a>
 		<?php
 	}
@@ -384,11 +384,13 @@ if ( ! function_exists( 'storefront_single_product_pagination' ) ) {
 		}
 
 		// Show only products in the same category?
-		$same_category = apply_filters( 'storefront_single_product_pagination_same_category', false );
+		$in_same_term   = apply_filters( 'storefront_single_product_pagination_same_category', false );
+		$excluded_terms = apply_filters( 'storefront_single_product_pagination_excluded_terms', '' );
+		$taxonomy       = apply_filters( 'storefront_single_product_pagination_taxonomy', 'product_cat' );
 
-		// Get previous and next products
-		$previous_product = get_previous_post( $same_category );
-		$next_product     = get_next_post( $same_category );
+		// Get previous and next products.
+		$previous_product = get_previous_post( $in_same_term, $excluded_terms, $taxonomy );
+		$next_product     = get_next_post( $in_same_term, $excluded_terms, $taxonomy );
 
 		if ( ! $previous_product && ! $next_product ) {
 			return;
@@ -405,11 +407,11 @@ if ( ! function_exists( 'storefront_single_product_pagination' ) ) {
 		?>
 		<nav class="storefront-product-pagination" aria-label="<?php esc_attr_e( 'More products', 'storefront' ); ?>">
 			<?php if ( $previous_product && $previous_product->is_visible() ) : ?>
-				<?php previous_post_link( '%link', wp_kses_post( $previous_product->get_image() ) . '<span class="storefront-product-pagination__title">%title</span>', $same_category, '', 'product_cat' ); ?>
+				<?php previous_post_link( '%link', wp_kses_post( $previous_product->get_image() ) . '<span class="storefront-product-pagination__title">%title</span>', $in_same_term, $excluded_terms, $taxonomy ); ?>
 			<?php endif; ?>
 
 			<?php if ( $next_product && $next_product->is_visible() ) : ?>
-				<?php next_post_link( '%link', wp_kses_post( $next_product->get_image() ) . '<span class="storefront-product-pagination__title">%title</span>', $same_category, '', 'product_cat' ); ?>
+				<?php next_post_link( '%link', wp_kses_post( $next_product->get_image() ) . '<span class="storefront-product-pagination__title">%title</span>', $in_same_term, $excluded_terms, $taxonomy ); ?>
 			<?php endif; ?>
 		</nav><!-- .storefront-product-pagination -->
 		<?php
@@ -447,7 +449,7 @@ if ( ! function_exists( 'storefront_sticky_single_add_to_cart' ) ) {
 						<?php echo wp_kses_post( woocommerce_get_product_thumbnail() ); ?>
 						<div class="storefront-sticky-add-to-cart__content-product-info">
 							<span class="storefront-sticky-add-to-cart__content-title"><?php esc_attr_e( 'You\'re viewing:', 'storefront' ); ?> <strong><?php the_title(); ?></strong></span>
-							<span class="storefront-sticky-add-to-cart__content-price"><?php echo wp_kses_data( $product->get_price_html() ); ?></span>
+							<span class="storefront-sticky-add-to-cart__content-price"><?php echo wp_kses_post( $product->get_price_html() ); ?></span>
 							<?php echo wp_kses_post( wc_get_rating_html( $product->get_average_rating() ) ); ?>
 						</div>
 						<a href="<?php echo esc_url( $product->add_to_cart_url() ); ?>" class="storefront-sticky-add-to-cart__content-button button alt">

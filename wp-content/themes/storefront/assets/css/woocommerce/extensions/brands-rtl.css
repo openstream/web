@@ -122,17 +122,17 @@ div#brands_a_z ul.brands {
     margin-left: 4.347826087%;
     -webkit-transition: all 0.5s ease;
     transition: all 0.5s ease; }
-  h3 {
+  div#brands_a_z h3 {
     width: 73.9130434783%;
     float: left;
     margin-left: 0;
     clear: left;
     text-transform: uppercase; }
-    h3:first-of-type {
+    div#brands_a_z h3:first-of-type {
       margin-top: 0; }
-  a.top {
+  div#brands_a_z a.top {
     clear: left; }
-  ul.brands {
+  div#brands_a_z ul.brands {
     width: 73.9130434783%;
     float: left;
     margin-left: 0;

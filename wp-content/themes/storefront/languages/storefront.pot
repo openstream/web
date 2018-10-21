@@ -2,9 +2,9 @@
 # This file is distributed under the GNU General Public License v2 or later.=!>
 msgid ""
 msgstr ""
-"Project-Id-Version: Storefront 2.3.1\n"
+"Project-Id-Version: Storefront 2.3.4\n"
 "Report-Msgid-Bugs-To: https://github.com/woothemes/storefront/issues\n"
-"POT-Creation-Date: 2018-05-10 15:51:26+00:00\n"
+"POT-Creation-Date: 2018-10-11 10:10:19+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -35,7 +35,7 @@ msgstr ""
 msgid "Product Categories"
 msgstr ""
 
-#: 404.php:57 404.php:59 inc/storefront-template-functions.php:728
+#: 404.php:57 404.php:59 inc/storefront-template-functions.php:738
 msgid "Popular Products"
 msgstr ""
 
@@ -179,60 +179,60 @@ msgstr ""
 msgid "Learn more"
 msgstr ""
 
-#: inc/class-storefront.php:83
-#: inc/nux/class-storefront-nux-starter-content.php:158
+#: inc/class-storefront.php:84
+#: inc/nux/class-storefront-nux-starter-content.php:162
 msgid "Primary Menu"
 msgstr ""
 
-#: inc/class-storefront.php:84
-#: inc/nux/class-storefront-nux-starter-content.php:178
+#: inc/class-storefront.php:85
+#: inc/nux/class-storefront-nux-starter-content.php:182
 msgid "Secondary Menu"
 msgstr ""
 
-#: inc/class-storefront.php:85
-#: inc/nux/class-storefront-nux-starter-content.php:188
+#: inc/class-storefront.php:86
+#: inc/nux/class-storefront-nux-starter-content.php:192
 msgid "Handheld Menu"
 msgstr ""
 
-#: inc/class-storefront.php:147
+#: inc/class-storefront.php:148
 msgid "Sidebar"
 msgstr ""
 
-#: inc/class-storefront.php:153
+#: inc/class-storefront.php:154
 msgid "Below Header"
 msgstr ""
 
-#: inc/class-storefront.php:155
+#: inc/class-storefront.php:156
 msgid ""
 "Widgets added to this region will appear beneath the header and above the "
 "main content."
 msgstr ""
 
-#: inc/class-storefront.php:167
+#: inc/class-storefront.php:168
 msgid "Footer Column %1$d"
 msgstr ""
 
-#: inc/class-storefront.php:168
+#: inc/class-storefront.php:169
 msgid "Widgets added here will appear in column %1$d of the footer."
 msgstr ""
 
-#: inc/class-storefront.php:170
+#: inc/class-storefront.php:171
 msgid "Footer Row %1$d - Column %2$d"
 msgstr ""
 
-#: inc/class-storefront.php:171
+#: inc/class-storefront.php:172
 msgid "Widgets added here will appear in column %1$d of footer row %2$d."
 msgstr ""
 
-#: inc/class-storefront.php:255
+#: inc/class-storefront.php:256
 msgid "Expand child menu"
 msgstr ""
 
-#: inc/class-storefront.php:256
+#: inc/class-storefront.php:257
 msgid "Collapse child menu"
 msgstr ""
 
-#: inc/class-storefront.php:345
+#: inc/class-storefront.php:346
 msgid "Post Navigation"
 msgstr ""
 
@@ -416,175 +416,175 @@ msgid "Add example products"
 msgstr ""
 
 #: inc/nux/class-storefront-nux-admin.php:131
-#: inc/nux/class-storefront-nux-guided-tour.php:111
+#: inc/nux/class-storefront-nux-guided-tour.php:112
 msgid "Let's go!"
 msgstr ""
 
-#: inc/nux/class-storefront-nux-guided-tour.php:83
+#: inc/nux/class-storefront-nux-guided-tour.php:84
 msgid "Next"
 msgstr ""
 
-#: inc/nux/class-storefront-nux-guided-tour.php:89
+#: inc/nux/class-storefront-nux-guided-tour.php:90
 msgid "No thanks, skip the tour"
 msgstr ""
 
-#: inc/nux/class-storefront-nux-guided-tour.php:91
+#: inc/nux/class-storefront-nux-guided-tour.php:92
 msgid "Skip this step"
 msgstr ""
 
-#: inc/nux/class-storefront-nux-guided-tour.php:109
+#: inc/nux/class-storefront-nux-guided-tour.php:110
 msgid "Welcome to the Customizer"
 msgstr ""
 
-#: inc/nux/class-storefront-nux-guided-tour.php:110
+#: inc/nux/class-storefront-nux-guided-tour.php:111
 msgid ""
 "Here you can control the overall look and feel of your store.%sTo get "
 "started, let's add your logo"
 msgstr ""
 
-#: inc/nux/class-storefront-nux-guided-tour.php:117
+#: inc/nux/class-storefront-nux-guided-tour.php:118
 msgid "Add your logo"
 msgstr ""
 
-#: inc/nux/class-storefront-nux-guided-tour.php:118
+#: inc/nux/class-storefront-nux-guided-tour.php:119
 msgid ""
 "Open the Site Identity Panel, then click the 'Select Logo' button to upload "
 "your logo."
 msgstr ""
 
-#: inc/nux/class-storefront-nux-guided-tour.php:124
+#: inc/nux/class-storefront-nux-guided-tour.php:125
 msgid "Customize your navigation menus"
 msgstr ""
 
-#: inc/nux/class-storefront-nux-guided-tour.php:125
+#: inc/nux/class-storefront-nux-guided-tour.php:126
 msgid "Organize your menus by adding Pages, Categories, Tags, and Custom Links."
 msgstr ""
 
-#: inc/nux/class-storefront-nux-guided-tour.php:130
+#: inc/nux/class-storefront-nux-guided-tour.php:131
 msgid "Choose your accent color"
 msgstr ""
 
-#: inc/nux/class-storefront-nux-guided-tour.php:131
+#: inc/nux/class-storefront-nux-guided-tour.php:132
 msgid ""
 "In the typography panel you can specify an accent color which will be "
 "applied to things like links and star ratings. We recommend using your "
 "brand color for this setting."
 msgstr ""
 
-#: inc/nux/class-storefront-nux-guided-tour.php:136
+#: inc/nux/class-storefront-nux-guided-tour.php:137
 msgid "Color your buttons"
 msgstr ""
 
-#: inc/nux/class-storefront-nux-guided-tour.php:137
+#: inc/nux/class-storefront-nux-guided-tour.php:138
 msgid ""
 "Choose colors for your button backgrounds and text. Once again, brand "
 "colors are good choices here."
 msgstr ""
 
-#: inc/nux/class-storefront-nux-guided-tour.php:143
+#: inc/nux/class-storefront-nux-guided-tour.php:144
 msgid ""
 "All set! Remember to %ssave & publish%s your changes when you're done.%sYou "
 "can return to your dashboard by clicking the X in the top left corner."
 msgstr ""
 
-#: inc/nux/class-storefront-nux-guided-tour.php:145
+#: inc/nux/class-storefront-nux-guided-tour.php:146
 msgid "Done"
 msgstr ""
 
-#: inc/nux/class-storefront-nux-starter-content.php:60
+#: inc/nux/class-storefront-nux-starter-content.php:64
 msgid "Welcome"
 msgstr ""
 
-#: inc/nux/class-storefront-nux-starter-content.php:61
+#: inc/nux/class-storefront-nux-starter-content.php:65
 msgid ""
 "This is your homepage which is what most visitors will see when they first "
 "visit your shop.%sYou can change this text by editing the \"Welcome\" page "
 "via the \"Pages\" menu in your dashboard."
 msgstr ""
 
-#: inc/nux/class-storefront-nux-starter-content.php:67
+#: inc/nux/class-storefront-nux-starter-content.php:71
 msgid "About"
 msgstr ""
 
-#: inc/nux/class-storefront-nux-starter-content.php:68
+#: inc/nux/class-storefront-nux-starter-content.php:72
 msgid ""
 "You might be an artist who would like to introduce yourself and your work "
 "here or maybe you&rsquo;re a business with a mission to describe."
 msgstr ""
 
-#: inc/nux/class-storefront-nux-starter-content.php:72
+#: inc/nux/class-storefront-nux-starter-content.php:76
 msgid "Contact"
 msgstr ""
 
-#: inc/nux/class-storefront-nux-starter-content.php:73
+#: inc/nux/class-storefront-nux-starter-content.php:77
 msgid ""
 "This is a page with some basic contact information, such as an address and "
 "phone number. You might also try a plugin to add a contact form."
 msgstr ""
 
-#: inc/nux/class-storefront-nux-starter-content.php:608
+#: inc/nux/class-storefront-nux-starter-content.php:610
 msgid "Accessories"
 msgstr ""
 
-#: inc/nux/class-storefront-nux-starter-content.php:609
-#: inc/nux/class-storefront-nux-starter-content.php:612
-#: inc/nux/class-storefront-nux-starter-content.php:615
+#: inc/nux/class-storefront-nux-starter-content.php:611
+#: inc/nux/class-storefront-nux-starter-content.php:614
+#: inc/nux/class-storefront-nux-starter-content.php:617
 msgid "A short category description"
 msgstr ""
 
-#: inc/nux/class-storefront-nux-starter-content.php:611
+#: inc/nux/class-storefront-nux-starter-content.php:613
 msgid "Hoodies"
 msgstr ""
 
-#: inc/nux/class-storefront-nux-starter-content.php:614
+#: inc/nux/class-storefront-nux-starter-content.php:616
 msgid "Tshirts"
 msgstr ""
 
-#: inc/nux/class-storefront-nux-starter-content.php:620
+#: inc/nux/class-storefront-nux-starter-content.php:622
 msgid "Beanie"
 msgstr ""
 
-#: inc/nux/class-storefront-nux-starter-content.php:643
+#: inc/nux/class-storefront-nux-starter-content.php:644
 msgid "Belt"
 msgstr ""
 
-#: inc/nux/class-storefront-nux-starter-content.php:665
+#: inc/nux/class-storefront-nux-starter-content.php:666
 msgid "Cap"
 msgstr ""
 
-#: inc/nux/class-storefront-nux-starter-content.php:687
+#: inc/nux/class-storefront-nux-starter-content.php:688
 msgid "Sunglasses"
 msgstr ""
 
-#: inc/nux/class-storefront-nux-starter-content.php:708
+#: inc/nux/class-storefront-nux-starter-content.php:709
 msgid "Hoodie with Logo"
 msgstr ""
 
-#: inc/nux/class-storefront-nux-starter-content.php:729
+#: inc/nux/class-storefront-nux-starter-content.php:730
 msgid "Hoodie with Pocket"
 msgstr ""
 
-#: inc/nux/class-storefront-nux-starter-content.php:751
+#: inc/nux/class-storefront-nux-starter-content.php:752
 msgid "Hoodie with Zipper"
 msgstr ""
 
-#: inc/nux/class-storefront-nux-starter-content.php:772
+#: inc/nux/class-storefront-nux-starter-content.php:773
 msgid "Hoodie"
 msgstr ""
 
-#: inc/nux/class-storefront-nux-starter-content.php:794
+#: inc/nux/class-storefront-nux-starter-content.php:795
 msgid "Long Sleeve Tee"
 msgstr ""
 
-#: inc/nux/class-storefront-nux-starter-content.php:815
+#: inc/nux/class-storefront-nux-starter-content.php:816
 msgid "Polo"
 msgstr ""
 
-#: inc/nux/class-storefront-nux-starter-content.php:836
+#: inc/nux/class-storefront-nux-starter-content.php:837
 msgid "Tshirt"
 msgstr ""
 
-#: inc/nux/class-storefront-nux-starter-content.php:857
+#: inc/nux/class-storefront-nux-starter-content.php:858
 msgid "Vneck Tshirt"
 msgstr ""
 
@@ -683,40 +683,40 @@ msgstr ""
 msgid "Shop by Category"
 msgstr ""
 
-#: inc/storefront-template-functions.php:615
+#: inc/storefront-template-functions.php:617
 msgid "New In"
 msgstr ""
 
-#: inc/storefront-template-functions.php:628
+#: inc/storefront-template-functions.php:632
 msgid "Recent Products"
 msgstr ""
 
-#: inc/storefront-template-functions.php:665
+#: inc/storefront-template-functions.php:670
 msgid "We Recommend"
 msgstr ""
 
-#: inc/storefront-template-functions.php:680
+#: inc/storefront-template-functions.php:686
 #: inc/woocommerce/storefront-woocommerce-template-functions.php:261
 msgid "Featured Products"
 msgstr ""
 
-#: inc/storefront-template-functions.php:715
+#: inc/storefront-template-functions.php:723
 msgid "Fan Favorites"
 msgstr ""
 
-#: inc/storefront-template-functions.php:763
+#: inc/storefront-template-functions.php:776
 msgid "On Sale"
 msgstr ""
 
-#: inc/storefront-template-functions.php:776
+#: inc/storefront-template-functions.php:792
 msgid "On Sale Products"
 msgstr ""
 
-#: inc/storefront-template-functions.php:810
+#: inc/storefront-template-functions.php:828
 msgid "Best Sellers"
 msgstr ""
 
-#: inc/storefront-template-functions.php:823
+#: inc/storefront-template-functions.php:843
 msgid "Best Selling Products"
 msgstr ""
 
@@ -743,19 +743,19 @@ msgstr ""
 msgid "My Account"
 msgstr ""
 
-#: inc/woocommerce/storefront-woocommerce-template-functions.php:406
+#: inc/woocommerce/storefront-woocommerce-template-functions.php:408
 msgid "More products"
 msgstr ""
 
-#: inc/woocommerce/storefront-woocommerce-template-functions.php:449
+#: inc/woocommerce/storefront-woocommerce-template-functions.php:451
 msgid "You're viewing:"
 msgstr ""
 
-#: inc/woocommerce/storefront-woocommerce-template-functions.php:483
+#: inc/woocommerce/storefront-woocommerce-template-functions.php:485
 msgid "Shop by Brand"
 msgstr ""
 
-#: inc/woocommerce/storefront-woocommerce-template-functions.php:493
+#: inc/woocommerce/storefront-woocommerce-template-functions.php:495
 msgid "Product Brands"
 msgstr ""
 
