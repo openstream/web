@@ -11,6 +11,6 @@ msgstr ""
 "Language: de_CH\n"
 "Project-Id-Version: Themes - Twenty Fifteen\n"
 
-#: inc/customizer.php:150
+#: inc/customizer.php:171
 msgid "Default"
 msgstr "Standard"

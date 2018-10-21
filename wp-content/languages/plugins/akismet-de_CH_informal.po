@@ -1,5 +1,5 @@
-# Translation of Plugins - Akismet - Stable (latest release) in German (Switzerland)
-# This file is distributed under the same license as the Plugins - Akismet - Stable (latest release) package.
+# Translation of Plugins - Akismet Anti-Spam - Stable (latest release) in German (Switzerland)
+# This file is distributed under the same license as the Plugins - Akismet Anti-Spam - Stable (latest release) package.
 msgid ""
 msgstr ""
 "PO-Revision-Date: +0000\n"
@@ -9,6 +9,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: GlotPress/2.4.0-alpha\n"
 "Language: de_CH\n"
-"Project-Id-Version: Plugins - Akismet - Stable (latest release)\n"
+"Project-Id-Version: Plugins - Akismet Anti-Spam - Stable (latest release)\n"
 
 

@@ -24,7 +24,7 @@ msgstr "Du bist dabei, die folgenden Websites zu löschen:"
 msgid "User could not be added to this site."
 msgstr "Benutzer konnte dieser Website nicht hinzugefügt werden."
 
-#: wp-admin/network/site-new.php:250
+#: wp-admin/network/site-new.php:252
 msgid "The username and a link to set the password will be mailed to this email address."
 msgstr "Der Benutzername und ein Link zum Festlegen des Passworts werden an diese E-Mail-Adresse gesendet."
 
@@ -543,7 +543,7 @@ msgstr "Diese Themes könnten auf anderen Websites im Netzwerk aktiviert sein."
 msgid "You are about to remove the following themes:"
 msgstr "Du bist dabei, folgende Themes zu entfernen:"
 
-#: wp-admin/network/settings.php:418
+#: wp-admin/network/settings.php:420
 msgid "Enable menus"
 msgstr "Menüs aktivieren"
 
@@ -812,10 +812,6 @@ msgstr "Im Netzwerk aktivierte Themes werden in dieser Ansicht nicht gezeigt."
 msgid "Language Settings"
 msgstr "Spracheinstellungen"
 
-#: wp-admin/network/settings.php:55
-msgid "Super admins can no longer be added on the Options screen. You must now go to the list of existing users on Network Admin > Users and click on Username or the Edit action link below that name. This goes to an Edit User page where you can check a box to grant super admin privileges."
-msgstr "Super-Administratoren können nicht mehr über den Optionen-Bereich hinzugefügt werden. Du musst jetzt über Netzwerkverwaltung > Benutzer zu der Liste der existierenden Benutzer gehen und auf den Benutzernamen oder den Bearbeiten-Link unter dem Namen klicken, dem du Administratorrechte geben möchtest. Du kommst dadurch auf die Benutzerseite und kannst ihm per Checkbox Super-Administrator-Rechte geben."
-
 #: wp-admin/network/menu.php:29
 msgid "Updates"
 msgstr "Aktualisierungen"
@@ -833,6 +829,10 @@ msgstr "Du kannst die fett gedruckten Kopfzeilen anklicken, um die Tabelle neu z
 #: wp-admin/network/site-users.php:246
 msgid "Select a user to change role."
 msgstr "Bitte einen Benutzer auswählen, um die Benutzerrolle ändern zu können."
+
+#: wp-admin/network/settings.php:55
+msgid "Super admins can no longer be added on the Options screen. You must now go to the list of existing users on Network Admin > Users and click on Username or the Edit action link below that name. This goes to an Edit User page where you can check a box to grant super admin privileges."
+msgstr "Super-Administratoren können nicht mehr über den Optionen-Bereich hinzugefügt werden. Du musst jetzt über Netzwerkverwaltung > Benutzer zu der Liste der existierenden Benutzer gehen und auf den Benutzernamen oder den Bearbeiten-Link unter dem Namen klicken, dem du Administratorrechte geben möchtest. Du kommst dadurch auf die Benutzerseite und kannst ihm per Checkbox Super-Administrator-Rechte geben."
 
 #: wp-admin/network/settings.php:202
 msgid "Allow site administrators to add new users to their site via the \"Users &rarr; Add New\" page"
@@ -1223,7 +1223,7 @@ msgstr "Sowohl Websites, als auch Benutzerkonten können registriert werden"
 msgid "Logged in users may register new sites"
 msgstr "Angemeldete Benutzer können neue Websites registrieren"
 
-#: wp-admin/network/settings.php:396
+#: wp-admin/network/settings.php:398
 msgid "Enable administration menus"
 msgstr "Administrations-Menüs aktivieren für:"
 
@@ -1344,15 +1344,15 @@ msgstr "URL des ersten Kommentars"
 msgid "Default Language"
 msgstr "Standardsprache"
 
-#: wp-admin/network/site-new.php:262
+#: wp-admin/network/site-new.php:264
 msgid "Add Site"
 msgstr "Website erstellen"
 
-#: wp-admin/network/site-new.php:246
+#: wp-admin/network/site-new.php:248
 msgid "Admin Email"
 msgstr "Administrator E-Mail-Adresse"
 
-#: wp-admin/network/site-new.php:250
+#: wp-admin/network/site-new.php:252
 msgid "A new user will be created if the above email address is not in the database."
 msgstr "Es wird ein neuer Benutzer angelegt, sofern nicht schon ein Benutzer mit dieser E-Mail-Adresse vorhanden ist."
 
