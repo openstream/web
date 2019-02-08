@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - WooCommerce - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2018-12-06 12:56:40+0000\n"
+"PO-Revision-Date: 2019-01-25 14:13:36+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -10,6 +10,21 @@ msgstr ""
 "X-Generator: GlotPress/2.4.0-alpha\n"
 "Language: de_CH\n"
 "Project-Id-Version: Plugins - WooCommerce - Stable (latest release)\n"
+
+#. translators: %s: error message
+#: includes/wc-rest-functions.php:114
+msgid "Invalid image: %s"
+msgstr "Ungültiges Bild: %s"
+
+#. translators: %s: Order number
+#: templates/emails/plain/customer-processing-order.php:27
+#: templates/emails/customer-processing-order.php:30
+msgid "Just to let you know &mdash; we've received your order #%s, and it is now being processed:"
+msgstr "Nur damit Sie Bescheid wissen &mdash; Wir haben Ihre Bestellung #%s erhalten und diese wird gerade bearbeitet:"
+
+#: includes/api/v1/class-wc-rest-webhooks-controller.php:414
+msgid "Webhook status must be valid."
+msgstr "Der Webhook-Status muss gültig sein."
 
 #: includes/admin/views/html-notice-wootenberg.php:30
 msgid "Install the WooCommerce Products Block"
@@ -255,7 +270,7 @@ msgstr "Es wurden keine Versandoptionen für %s gefunden."
 
 #: templates/cart/cart-shipping.php:61
 msgid "Enter your address to view shipping options."
-msgstr "Geben deine Adresse ein, um die Versandoptionen anzuzeigen."
+msgstr "Gib deine Adresse ein, um die Versandoptionen anzuzeigen."
 
 #: templates/cart/cart-shipping.php:54
 msgid "This is only an estimate. Prices will be updated during checkout."
@@ -13062,6 +13077,11 @@ msgstr "Vielen Dank. Deine Bestellung ist eingegangen."
 msgid "Update totals"
 msgstr "Gesamtbetrag aktualisieren"
 
+#. translators: $1 and $2 opening and closing emphasis tags respectively
+#: templates/checkout/payment.php:42
+msgid "Since your browser does not support JavaScript, or it is disabled, please ensure you click the %1$sUpdate Totals%2$s button before placing your order. You may be charged more than the amount stated above if you fail to do so."
+msgstr "Sollte dein Browser kein JavaScript unterstützen, oder wenn dieses deaktiviert wurde, stelle bitte sicher, das du den Button %1$sGesamtbetrag aktualisieren%2$s klickst, bevor du deine Bestellung abschickst. Wenn du das nicht tust, könnte es möglich sein, das du mehr bezahlen musst, als oben angegeben ist."
+
 #: templates/checkout/payment.php:33
 msgid "Sorry, it seems that there are no available payment methods for your state. Please contact us if you require assistance or wish to make alternate arrangements."
 msgstr "Entschuldigung, aber es gibt anscheinend keine verfügbaren Zahlungsmethoden für dein/e Bundesland/Region. Bitte kontaktiere uns, falls du Hilfe benötigst oder andere Vereinbarungen treffen möchtest."
@@ -13929,7 +13949,7 @@ msgstr "Berechnungsart"
 #: includes/shipping/legacy-flat-rate/includes/settings-flat-rate.php:97
 #: includes/shipping/flat-rate/includes/settings-flat-rate.php:68
 msgid "No shipping class cost"
-msgstr "Keine Versandklassenkosten"
+msgstr "Kosten ohne Versandklasse"
 
 #. translators: %s: shipping class name
 #: includes/shipping/legacy-flat-rate/includes/settings-flat-rate.php:88
@@ -18658,7 +18678,7 @@ msgstr "Anz."
 #: includes/shipping/flat-rate/includes/settings-flat-rate.php:31
 #: includes/shipping/local-pickup/class-wc-shipping-local-pickup.php:97
 msgid "Cost"
-msgstr "Preis"
+msgstr "Kosten"
 
 #: includes/class-wc-form-handler.php:553
 #: includes/admin/meta-boxes/views/html-order-items.php:29
