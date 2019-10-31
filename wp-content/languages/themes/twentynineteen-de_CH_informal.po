@@ -138,41 +138,18 @@ msgstr "Footer"
 msgid "Primary Color"
 msgstr "Primäre Farbe"
 
-#: template-parts/post/discussion-meta.php:18
-msgid "No comments"
-msgstr "Keine Kommentare"
+#: single.php:38
+msgid "Next Post"
+msgstr "Nächster Beitrag"
 
-#. translators: %1(X comments)$s
-#: template-parts/post/discussion-meta.php:16
-msgid "%d Comment"
-msgid_plural "%d Comments"
-msgstr[0] "%d Kommentar"
-msgstr[1] "%d Kommentare"
-
-#: template-parts/post/author-bio.php:26
-msgid "View more posts"
-msgstr "Mehr Beiträge anzeigen"
-
-#. translators: %s: post author
-#: template-parts/post/author-bio.php:17
-msgid "Published by %s"
-msgstr "Veröffentlicht von %s"
+#. translators: used between list items, there is a space after the comma.
+#: inc/template-tags.php:86 inc/template-tags.php:98
+msgid ", "
+msgstr ", "
 
 #: template-parts/header/site-branding.php:33
 msgid "Top Menu"
 msgstr "Oberes Menü"
-
-#. translators: %s: Name of current post. Only visible to screen readers
-#: template-parts/content/content.php:36
-#: template-parts/content/content-single.php:27
-msgid "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
-msgstr "<span class=\"screen-reader-text\">\"%s\"</span> weiterlesen"
-
-#: image.php:52 template-parts/content/content-page.php:27
-#: template-parts/content/content.php:49
-#: template-parts/content/content-single.php:40
-msgid "Pages:"
-msgstr "Seiten:"
 
 #: template-parts/content/content-none.php:46
 msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
@@ -191,21 +168,64 @@ msgstr "Bereit, deinen ersten Beitrag zu veröffentlichen? <a href=\"%1$s\">Star
 msgid "Nothing Found"
 msgstr "Nichts gefunden"
 
-#: single.php:42
-msgid "Previous post:"
-msgstr "Vorheriger Beitrag:"
-
 #: single.php:41
 msgid "Previous Post"
 msgstr "Vorheriger Beitrag"
 
-#: single.php:39
-msgid "Next post:"
-msgstr "Nächster Beitrag:"
+#: comments.php:95
+msgid "Previous"
+msgstr "Zurück"
 
-#: single.php:38
-msgid "Next Post"
-msgstr "Nächster Beitrag"
+#: comments.php:96
+msgid "Next"
+msgstr "Weiter"
+
+#. translators: %s: Name of current post. Only visible to screen readers
+#: template-parts/content/content.php:36
+#: template-parts/content/content-single.php:27
+msgid "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
+msgstr "<span class=\"screen-reader-text\">\"%s\"</span> weiterlesen"
+
+#: image.php:52 template-parts/content/content-page.php:27
+#: template-parts/content/content.php:49
+#: template-parts/content/content-single.php:40
+msgid "Pages:"
+msgstr "Seiten:"
+
+#: header.php:25
+msgid "Skip to content"
+msgstr "Zum Inhalt springen"
+
+#: functions.php:61 template-parts/header/site-branding.php:46
+msgid "Social Links Menu"
+msgstr "Social-Links-Menü"
+
+#: comments.php:116
+msgid "Comments are closed."
+msgstr "Kommentare sind geschlossen."
+
+#: 404.php:20
+msgid "Oops! That page can&rsquo;t be found."
+msgstr "Die Seite konnte leider nicht gefunden werden."
+
+#: 404.php:24
+msgid "It looks like nothing was found at this location. Maybe try a search?"
+msgstr "Wie es aussieht, wurde an dieser Stelle nichts gefunden. Möchtest du eine Suche starten?"
+
+#: template-parts/post/discussion-meta.php:18
+msgid "No comments"
+msgstr "Keine Kommentare"
+
+#. translators: %1(X comments)$s
+#: template-parts/post/discussion-meta.php:16
+msgid "%d Comment"
+msgid_plural "%d Comments"
+msgstr[0] "%d Kommentar"
+msgstr[1] "%d Kommentare"
+
+#: template-parts/post/author-bio.php:26
+msgid "View more posts"
+msgstr "Mehr Beiträge anzeigen"
 
 #: search.php:22
 msgid "Search results for:"
@@ -219,18 +239,9 @@ msgstr "Ältere Beiträge"
 msgid "Newer posts"
 msgstr "Neuere Beiträge"
 
-#: inc/template-tags.php:104
-msgid "Tags:"
-msgstr "Schlagwörter:"
-
 #: inc/template-tags.php:92
 msgid "Posted in"
 msgstr "Veröffentlicht in"
-
-#. translators: used between list items, there is a space after the comma.
-#: inc/template-tags.php:86 inc/template-tags.php:98
-msgid ", "
-msgstr ", "
 
 #. translators: %s: Name of current post. Only visible to screen readers.
 #: inc/template-tags.php:63
@@ -295,14 +306,6 @@ msgstr "Kategorie-Archive:"
 msgid "Edit <span class=\"screen-reader-text\">%s</span>"
 msgstr "<span class=\"screen-reader-text\">%s</span> bearbeiten"
 
-#: header.php:25
-msgid "Skip to content"
-msgstr "Zum Inhalt springen"
-
-#: functions.php:61 template-parts/header/site-branding.php:46
-msgid "Social Links Menu"
-msgstr "Social-Links-Menü"
-
 #: functions.php:59 functions.php:146
 msgid "Primary"
 msgstr "Primär"
@@ -312,39 +315,9 @@ msgstr "Primär"
 msgid "Proudly powered by %s."
 msgstr "Stolz präsentiert von %s."
 
-#: comments.php:116
-msgid "Comments are closed."
-msgstr "Kommentare sind geschlossen."
-
-#: comments.php:96
-msgid "Next"
-msgstr "Weiter"
-
-#: comments.php:95
-msgid "Previous"
-msgstr "Zurück"
-
 #: comments.php:92 comments.php:95 comments.php:96
 msgid "Comments"
 msgstr "Kommentare"
-
-#. translators: 1: number of comments, 2: post title
-#: comments.php:44
-msgctxt "comments title"
-msgid "%1$s reply on &ldquo;%2$s&rdquo;"
-msgid_plural "%1$s replies on &ldquo;%2$s&rdquo;"
-msgstr[0] "%1$s Antwort auf &‌#8222;%2$s&‌#8220;"
-msgstr[1] "%1$s Antworten auf &‌#8222;%2$s&‌#8220;"
-
-#. translators: %s: post title
-#: comments.php:40
-msgctxt "comments title"
-msgid "One reply on &ldquo;%s&rdquo;"
-msgstr "Eine Antwort auf &‌#8222;%s&‌#8220;"
-
-#: comments.php:35 comments.php:105 comments.php:107
-msgid "Leave a comment"
-msgstr "Schreib einen Kommentar"
 
 #: comments.php:33
 msgid "Join the Conversation"
@@ -367,13 +340,40 @@ msgstr "%1$s um %2$s"
 msgid "%s <span class=\"screen-reader-text says\">says:</span>"
 msgstr "%s <span class=\"screen-reader-text says\">sagt:</span>"
 
-#: 404.php:24
-msgid "It looks like nothing was found at this location. Maybe try a search?"
-msgstr "Wie es aussieht, wurde an dieser Stelle nichts gefunden. Möchtest du eine Suche starten?"
+#. translators: %s: post author
+#: template-parts/post/author-bio.php:17
+msgid "Published by %s"
+msgstr "Veröffentlicht von %s"
 
-#: 404.php:20
-msgid "Oops! That page can&rsquo;t be found."
-msgstr "Die Seite konnte leider nicht gefunden werden."
+#: single.php:42
+msgid "Previous post:"
+msgstr "Vorheriger Beitrag:"
+
+#: single.php:39
+msgid "Next post:"
+msgstr "Nächster Beitrag:"
+
+#: inc/template-tags.php:104
+msgid "Tags:"
+msgstr "Schlagwörter:"
+
+#. translators: 1: number of comments, 2: post title
+#: comments.php:44
+msgctxt "comments title"
+msgid "%1$s reply on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s replies on &ldquo;%2$s&rdquo;"
+msgstr[0] "%1$s Antwort auf &‌#8222;%2$s&‌#8220;"
+msgstr[1] "%1$s Antworten auf &‌#8222;%2$s&‌#8220;"
+
+#. translators: %s: post title
+#: comments.php:40
+msgctxt "comments title"
+msgid "One reply on &ldquo;%s&rdquo;"
+msgstr "Eine Antwort auf &‌#8222;%s&‌#8220;"
+
+#: comments.php:35 comments.php:105 comments.php:107
+msgid "Leave a comment"
+msgstr "Schreib einen Kommentar"
 
 #. Author of the theme
 msgid "the WordPress team"
