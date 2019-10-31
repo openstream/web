@@ -1,10 +1,23 @@
+/**
+ * External dependencies
+ */
+import { DEFAULT_COLUMNS, DEFAULT_ROWS } from '@woocommerce/block-settings';
+
+export const sharedAttributeBlockTypes = [
+	'woocommerce/product-best-sellers',
+	'woocommerce/product-category',
+	'woocommerce/product-new',
+	'woocommerce/product-on-sale',
+	'woocommerce/product-top-rated',
+];
+
 export default {
 	/**
 	 * Number of columns.
 	 */
 	columns: {
 		type: 'number',
-		default: wc_product_block_data.default_columns,
+		default: DEFAULT_COLUMNS,
 	},
 
 	/**
@@ -12,7 +25,15 @@ export default {
 	 */
 	rows: {
 		type: 'number',
-		default: wc_product_block_data.default_rows,
+		default: DEFAULT_ROWS,
+	},
+
+	/**
+	 * How to align cart buttons.
+	 */
+	alignButtons: {
+		type: 'boolean',
+		default: false,
 	},
 
 	/**
@@ -32,10 +53,15 @@ export default {
 	},
 
 	/**
-	 * Product attributes, used to display only products with the given attributes.
+	 * Content visibility setting
 	 */
-	attributes: {
-		type: 'array',
-		default: [],
+	contentVisibility: {
+		type: 'object',
+		default: {
+			title: true,
+			price: true,
+			rating: true,
+			button: true,
+		},
 	},
 };

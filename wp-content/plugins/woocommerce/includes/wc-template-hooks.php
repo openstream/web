@@ -220,6 +220,7 @@ add_action( 'woocommerce_checkout_terms_and_conditions', 'wc_terms_and_condition
  */
 add_action( 'woocommerce_widget_shopping_cart_buttons', 'woocommerce_widget_shopping_cart_button_view_cart', 10 );
 add_action( 'woocommerce_widget_shopping_cart_buttons', 'woocommerce_widget_shopping_cart_proceed_to_checkout', 20 );
+add_action( 'woocommerce_widget_shopping_cart_total', 'woocommerce_widget_shopping_cart_subtotal', 10 );
 
 /**
  * Cart.
@@ -303,3 +304,4 @@ add_action( 'woocommerce_account_content', 'woocommerce_output_all_notices', 5 )
 add_action( 'woocommerce_before_customer_login_form', 'woocommerce_output_all_notices', 10 );
 add_action( 'woocommerce_before_lost_password_form', 'woocommerce_output_all_notices', 10 );
 add_action( 'before_woocommerce_pay', 'woocommerce_output_all_notices', 10 );
+add_action( 'woocommerce_before_reset_password_form', 'woocommerce_output_all_notices', 10 );

@@ -1,18 +1,19 @@
- === MultilingualPress ===
+=== MultilingualPress ===
 Contributors: inpsyde, toscho, tfrommen, Bueltge, hughwillfayle, nullbyte, Biont, ChriCo, dnaber-de, dinamiko
-Tags: multilingual, multisite, translate, language switcher, international, network
+Tags: multilingual, multisite, translate, woocommerce, language switcher
 Requires at least: 4.7
-Tested up to: 4.9
-Stable tag: 2.11.2
+Tested up to: 5.2
+Stable tag: 2.11.3
 
 Create a fast translation network on WordPress multisite.
 
-== Description ==
+== Description 
+
 WARNING: MultilingualPress 2 is not compatible with Gutenberg. BEFORE you update your WordPress to version 5.0 please read our [MultilingualPress and WordPress 5.0 guide](https://multilingualpress.org/docs/multilingualpress-wordpress-5-0-gutenberg/).
 
-**Exciting news! MultilingualPress 3 is released and available for Pro users! Fully refactored, based on PHP 7, Gutenberg support, improved UI and much more. [Get it here!](https://multilingualpress.org/#buy)**
+**Exciting news! MultilingualPress 3.0 is released and available for Pro users! Fully refactored, based on PHP 7, Gutenberg support, improved UI and optimized for WooCommerce. [Get it here!](https://multilingualpress.org/#buy)**
 
-*Please note, you can't update MLP2 to MLP3 yet, this is a complete refactor, therefore an update is not possible yet.*
+*Please note, you can't update MLP2 to MLP3 as usual, this is a complete refactor. We are currently working on a [Migration tool which is available as alpha version on github](https://github.com/inpsyde/multilingualpress-2-to-3-migration). A tutorial for the migration tool can be found [here](https://multilingualpress.org/docs/multilingualpress-2-3-migration-tool/)*
 
 Run each language in a separate site of your WordPress multisite and connect the content in a lightweight user interface. To allow your users switch between languages, create a language switcher in your custom menu or use a customizable widget.
 
@@ -118,6 +119,10 @@ tutorial](http://make.multilingualpress.org/2014/02/how-to-install-multi-site/).
 13. MultilingualPress is recommended by WP Engine as a solution for multilingual websites.
 
 == Changelog ==
+
+= 2.11.3 =
+- Fix MultilingualPress tab does not appear in WordPress 5.2+, see [#324](https://github.com/inpsyde/MultilingualPress/pull/324).
+- Add `multilingualpress.deleted_tables` filter to skip table deletion, see [#323](https://github.com/inpsyde/MultilingualPress/pull/323).
 
 = 2.11.2 =
 - Add `__block_editor_compatible_meta_box` with `false` value to translation metabox, see [#320](https://github.com/inpsyde/MultilingualPress/pull/320).

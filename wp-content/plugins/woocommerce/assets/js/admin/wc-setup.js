@@ -51,6 +51,25 @@ jQuery( function( $ ) {
 		$( '#currency_code' ).val( wc_setup_currencies[ country ] ).change();
 	} );
 
+	/* Setup postcode field and validations */
+	$( '#store_country' ).on( 'change', function() {
+		if ( ! wc_setup_params.postcodes ) {
+			return;
+		}
+
+		var $this                 = $( this ),
+			country               = $this.val(),
+			$store_postcode_input = $( '#store_postcode' ),
+			country_postcode_obj  = wc_setup_params.postcodes[ country ];
+
+		// Default to required, if its unknown whether postcode is required or not.
+		if ( $.isEmptyObject( country_postcode_obj ) || country_postcode_obj.required  ) {
+			$store_postcode_input.attr( 'required', 'true' );
+		} else {
+			$store_postcode_input.removeAttr( 'required' );
+		}
+	} );
+
 	$( '#store_country' ).change();
 
 	$( '.wc-wizard-services' ).on( 'change', '.wc-wizard-service-enable input', function() {
@@ -64,6 +83,15 @@ jQuery( function( $ ) {
 			$( this ).closest( '.wc-wizard-service-item' ).removeClass( 'checked' );
 			$( this ).closest( '.wc-wizard-service-item' )
 				.find( '.wc-wizard-service-settings' ).addClass( 'hide' );
+		}
+	} );
+
+	$( '.wc-wizard-services' ).on( 'keyup', function( e ) {
+		var code = e.keyCode || e.which,
+			$focused = $( document.activeElement );
+
+		if ( $focused.is( '.wc-wizard-service-toggle, .wc-wizard-service-enable' ) && ( 13 === code || 32 === code ) ) {
+			$focused.find( ':input' ).click();
 		}
 	} );
 
@@ -95,6 +123,7 @@ jQuery( function( $ ) {
 		description.find( '.shipping-method-description' ).addClass( 'hide' );
 		description.find( '.' + selectedMethod ).removeClass( 'hide' );
 
+		var $checkbox = zone.parent().find( 'input[type="checkbox"]' );
 		var settings = zone.find( '.shipping-method-settings' );
 		settings
 			.find( '.shipping-method-setting' )
@@ -105,7 +134,7 @@ jQuery( function( $ ) {
 			.find( '.' + selectedMethod )
 			.removeClass( 'hide' )
 			.find( '.shipping-method-required-field' )
-			.prop( 'required', true );
+			.prop( 'required', $checkbox.prop( 'checked' ) );
 	} ).find( '.wc-wizard-shipping-method-select .method' ).change();
 
 	$( '.wc-wizard-services' ).on( 'change', '.wc-wizard-shipping-method-enable', function() {

@@ -1,15 +1,41 @@
-export default function getQuery( attributes, name ) {
-	const { categories, catOperator, columns, orderby, products, rows } = attributes;
+/**
+ * External dependencies
+ */
+import { min } from 'lodash';
+import { DEFAULT_COLUMNS, DEFAULT_ROWS } from '@woocommerce/block-settings';
+
+export default function getQuery( blockAttributes, name ) {
+	const {
+		attributes,
+		attrOperator,
+		categories,
+		catOperator,
+		tags,
+		tagOperator,
+		orderby,
+		products,
+	} = blockAttributes;
+	const columns = blockAttributes.columns || DEFAULT_COLUMNS;
+	const rows = blockAttributes.rows || DEFAULT_ROWS;
+	const apiMax = Math.floor( 100 / columns ) * columns; // Prevent uneven final row.
 
 	const query = {
 		status: 'publish',
-		per_page: rows * columns,
+		per_page: min( [ rows * columns, apiMax ] ),
+		catalog_visibility: 'visible',
 	};
 
 	if ( categories && categories.length ) {
 		query.category = categories.join( ',' );
 		if ( catOperator && 'all' === catOperator ) {
-			query.cat_operator = 'AND';
+			query.category_operator = 'and';
+		}
+	}
+
+	if ( tags && tags.length > 0 ) {
+		query.tag = tags.join( ',' );
+		if ( tagOperator && 'all' === tagOperator ) {
+			query.tag_operator = 'and';
 		}
 	}
 
@@ -28,6 +54,15 @@ export default function getQuery( attributes, name ) {
 			query.order = 'asc';
 		} else {
 			query.orderby = orderby;
+		}
+	}
+
+	if ( attributes && attributes.length > 0 ) {
+		query.attribute_term = attributes.map( ( { id } ) => id ).join( ',' );
+		query.attribute = attributes[ 0 ].attr_slug;
+
+		if ( attrOperator ) {
+			query.attribute_operator = 'all' === attrOperator ? 'and' : 'in';
 		}
 	}
 
