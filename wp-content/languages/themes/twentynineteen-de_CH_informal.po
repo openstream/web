@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Themes - Twenty Nineteen package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2018-12-06 12:03:09+0000\n"
+"PO-Revision-Date: 2019-02-20 13:38:52+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -11,9 +11,18 @@ msgstr ""
 "Language: de_CH\n"
 "Project-Id-Version: Themes - Twenty Nineteen\n"
 
+#. Description of the theme
+msgid "Our 2019 default theme is designed to show off the power of the block editor. It features custom styles for all the default blocks, and is built so that what you see in the editor looks like what you'll see on your website. Twenty Nineteen is designed to be adaptable to a wide range of websites, whether you’re running a photo blog, launching a new business, or supporting a non-profit. Featuring ample whitespace and modern sans-serif headlines paired with classic serif body text, it's built to be beautiful on all screen sizes."
+msgstr "Unser 2019 Standard-Theme wurde entwickelt, um die Leistungsfähigkeit des Block-Editors zu demonstrieren. Es bietet benutzerdefinierte Stile für alle Standardblöcke und ist so aufgebaut, dass du das, was du im Editor siehst, auch auf deiner Website sehen wirst. Twenty Nineteen wurde entwickelt, um sich an eine Vielzahl von Websites anzupassen, egal du einen Fotoblog betreibst, ein neues Unternehmen startest oder eine gemeinnützige Organisation unterstützt. Mit reichlich Whitespace und modernen serifenlosen Überschriften, gepaart mit klassischem serifenbetontem Fliesstext wird es auf allen Bildschirmgrössen schön aussehen."
+
 #. Theme Name of the theme
 msgid "Twenty Nineteen"
 msgstr "Twenty Nineteen"
+
+#. translators: %s: parent post link
+#: single.php:31
+msgid "<span class=\"meta-nav\">Published in</span><span class=\"post-title\">%s</span>"
+msgstr "<span class=\"meta-nav\">Veröffentlicht in</span><span class=\"post-title\">%s</span>"
 
 #: image.php:87
 msgctxt "Parent post link"
@@ -129,80 +138,6 @@ msgstr "Footer"
 msgid "Primary Color"
 msgstr "Primäre Farbe"
 
-#: single.php:38
-msgid "Next Post"
-msgstr "Nächster Beitrag"
-
-#. translators: used between list items, there is a space after the comma.
-#: inc/template-tags.php:86 inc/template-tags.php:98
-msgid ", "
-msgstr ", "
-
-#: template-parts/header/site-branding.php:33
-msgid "Top Menu"
-msgstr "Oberes Menü"
-
-#: template-parts/content/content-none.php:46
-msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
-msgstr "Es sieht so aus, als ob wir nicht das finden konnten, wonach du gesucht hast. Möglicherweise hilft eine Suche."
-
-#: template-parts/content/content-none.php:39
-msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
-msgstr "Es gibt keine passenden Suchergebnisse. Bitte versuche es mit anderen Suchbegriffen."
-
-#. translators: 1: link to WP admin new post page.
-#: template-parts/content/content-none.php:26
-msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
-msgstr "Bereit, deinen ersten Beitrag zu veröffentlichen? <a href=\"%1$s\">Starte hier</a>."
-
-#: template-parts/content/content-none.php:16
-msgid "Nothing Found"
-msgstr "Nichts gefunden"
-
-#: single.php:41
-msgid "Previous Post"
-msgstr "Vorheriger Beitrag"
-
-#: comments.php:95
-msgid "Previous"
-msgstr "Zurück"
-
-#: comments.php:96
-msgid "Next"
-msgstr "Weiter"
-
-#. translators: %s: Name of current post. Only visible to screen readers
-#: template-parts/content/content.php:36
-#: template-parts/content/content-single.php:27
-msgid "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
-msgstr "<span class=\"screen-reader-text\">\"%s\"</span> weiterlesen"
-
-#: image.php:52 template-parts/content/content-page.php:27
-#: template-parts/content/content.php:49
-#: template-parts/content/content-single.php:40
-msgid "Pages:"
-msgstr "Seiten:"
-
-#: header.php:24
-msgid "Skip to content"
-msgstr "Zum Inhalt springen"
-
-#: functions.php:61 template-parts/header/site-branding.php:46
-msgid "Social Links Menu"
-msgstr "Social-Links-Menü"
-
-#: comments.php:116
-msgid "Comments are closed."
-msgstr "Kommentare sind geschlossen."
-
-#: 404.php:20
-msgid "Oops! That page can&rsquo;t be found."
-msgstr "Die Seite konnte leider nicht gefunden werden."
-
-#: 404.php:24
-msgid "It looks like nothing was found at this location. Maybe try a search?"
-msgstr "Wie es aussieht, wurde an dieser Stelle nichts gefunden. Möchtest du eine Suche starten?"
-
 #: template-parts/post/discussion-meta.php:18
 msgid "No comments"
 msgstr "Keine Kommentare"
@@ -221,14 +156,55 @@ msgstr "Mehr Beiträge anzeigen"
 #. translators: %s: post author
 #: template-parts/post/author-bio.php:17
 msgid "Published by %s"
-msgstr "Veröffentlich von %s"
+msgstr "Veröffentlicht von %s"
+
+#: template-parts/header/site-branding.php:33
+msgid "Top Menu"
+msgstr "Oberes Menü"
+
+#. translators: %s: Name of current post. Only visible to screen readers
+#: template-parts/content/content.php:36
+#: template-parts/content/content-single.php:27
+msgid "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
+msgstr "<span class=\"screen-reader-text\">\"%s\"</span> weiterlesen"
+
+#: image.php:52 template-parts/content/content-page.php:27
+#: template-parts/content/content.php:49
+#: template-parts/content/content-single.php:40
+msgid "Pages:"
+msgstr "Seiten:"
+
+#: template-parts/content/content-none.php:46
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr "Es sieht so aus, als ob wir nicht das finden konnten, wonach du gesucht hast. Möglicherweise hilft eine Suche."
+
+#: template-parts/content/content-none.php:39
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr "Es gibt keine passenden Suchergebnisse. Bitte versuche es mit anderen Suchbegriffen."
+
+#. translators: 1: link to WP admin new post page.
+#: template-parts/content/content-none.php:26
+msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr "Bereit, deinen ersten Beitrag zu veröffentlichen? <a href=\"%1$s\">Starte hier</a>."
+
+#: template-parts/content/content-none.php:16
+msgid "Nothing Found"
+msgstr "Nichts gefunden"
 
 #: single.php:42
 msgid "Previous post:"
+msgstr "Vorheriger Beitrag:"
+
+#: single.php:41
+msgid "Previous Post"
 msgstr "Vorheriger Beitrag"
 
 #: single.php:39
 msgid "Next post:"
+msgstr "Nächster Beitrag:"
+
+#: single.php:38
+msgid "Next Post"
 msgstr "Nächster Beitrag"
 
 #: search.php:22
@@ -245,11 +221,16 @@ msgstr "Neuere Beiträge"
 
 #: inc/template-tags.php:104
 msgid "Tags:"
-msgstr "Schlagwörter"
+msgstr "Schlagwörter:"
 
 #: inc/template-tags.php:92
 msgid "Posted in"
 msgstr "Veröffentlicht in"
+
+#. translators: used between list items, there is a space after the comma.
+#: inc/template-tags.php:86 inc/template-tags.php:98
+msgid ", "
+msgstr ", "
 
 #. translators: %s: Name of current post. Only visible to screen readers.
 #: inc/template-tags.php:63
@@ -314,6 +295,14 @@ msgstr "Kategorie-Archive:"
 msgid "Edit <span class=\"screen-reader-text\">%s</span>"
 msgstr "<span class=\"screen-reader-text\">%s</span> bearbeiten"
 
+#: header.php:25
+msgid "Skip to content"
+msgstr "Zum Inhalt springen"
+
+#: functions.php:61 template-parts/header/site-branding.php:46
+msgid "Social Links Menu"
+msgstr "Social-Links-Menü"
+
 #: functions.php:59 functions.php:146
 msgid "Primary"
 msgstr "Primär"
@@ -322,6 +311,18 @@ msgstr "Primär"
 #: footer.php:28
 msgid "Proudly powered by %s."
 msgstr "Stolz präsentiert von %s."
+
+#: comments.php:116
+msgid "Comments are closed."
+msgstr "Kommentare sind geschlossen."
+
+#: comments.php:96
+msgid "Next"
+msgstr "Weiter"
+
+#: comments.php:95
+msgid "Previous"
+msgstr "Zurück"
 
 #: comments.php:92 comments.php:95 comments.php:96
 msgid "Comments"
@@ -332,39 +333,47 @@ msgstr "Kommentare"
 msgctxt "comments title"
 msgid "%1$s reply on &ldquo;%2$s&rdquo;"
 msgid_plural "%1$s replies on &ldquo;%2$s&rdquo;"
-msgstr[0] "%1$s Antwort auf &ldquo;%2$s&rdquo;"
-msgstr[1] "%1$s Antworten auf &ldquo;%2$s&rdquo;"
+msgstr[0] "%1$s Antwort auf &‌#8222;%2$s&‌#8220;"
+msgstr[1] "%1$s Antworten auf &‌#8222;%2$s&‌#8220;"
 
 #. translators: %s: post title
 #: comments.php:40
 msgctxt "comments title"
 msgid "One reply on &ldquo;%s&rdquo;"
-msgstr "Eine Antwort auf &bdquo;%s&ldquo;"
+msgstr "Eine Antwort auf &‌#8222;%s&‌#8220;"
 
 #: comments.php:35 comments.php:105 comments.php:107
 msgid "Leave a comment"
-msgstr "Hinterlasse einen Kommentar"
+msgstr "Schreib einen Kommentar"
 
 #: comments.php:33
 msgid "Join the Conversation"
 msgstr "Beteilige dich an der Unterhaltung"
 
-#: classes/class-twentynineteen-walker-comment.php:100
+#: classes/class-twentynineteen-walker-comment.php:99
 msgid "Your comment is awaiting moderation."
 msgstr "Dein Kommentar wartet auf Freigabe."
 
-#: classes/class-twentynineteen-walker-comment.php:95
+#: classes/class-twentynineteen-walker-comment.php:94
 msgid "Edit"
 msgstr "Bearbeiten"
 
 #. translators: 1: comment date, 2: comment time
-#: classes/class-twentynineteen-walker-comment.php:87
+#: classes/class-twentynineteen-walker-comment.php:86
 msgid "%1$s at %2$s"
 msgstr "%1$s um %2$s"
 
-#: classes/class-twentynineteen-walker-comment.php:67
+#: classes/class-twentynineteen-walker-comment.php:66
 msgid "%s <span class=\"screen-reader-text says\">says:</span>"
 msgstr "%s <span class=\"screen-reader-text says\">sagt:</span>"
+
+#: 404.php:24
+msgid "It looks like nothing was found at this location. Maybe try a search?"
+msgstr "Wie es aussieht, wurde an dieser Stelle nichts gefunden. Möchtest du eine Suche starten?"
+
+#: 404.php:20
+msgid "Oops! That page can&rsquo;t be found."
+msgstr "Die Seite konnte leider nicht gefunden werden."
 
 #. Author of the theme
 msgid "the WordPress team"
@@ -374,7 +383,3 @@ msgstr "dem WordPress-Team"
 #: footer.php:25
 msgid "https://wordpress.org/"
 msgstr "https://de.wordpress.org/"
-
-#. Theme URI of the theme
-msgid "https://github.com/WordPress/twentynineteen"
-msgstr "https://github.com/WordPress/twentynineteen"
