@@ -134,17 +134,25 @@ if ( ! function_exists( 'storefront_credit' ) ) {
 	 * @return void
 	 */
 	function storefront_credit() {
+		$links_output = '';
+
+		if ( apply_filters( 'storefront_credit_link', true ) ) {
+			$links_output .= '<a href="https://woocommerce.com" target="_blank" title="' . esc_attr__( 'WooCommerce - The Best eCommerce Platform for WordPress', 'storefront' ) . '" rel="author">' . esc_html__( 'Built with Storefront &amp; WooCommerce', 'storefront' ) . '</a>.';
+		}
+
+		if ( apply_filters( 'storefront_privacy_policy_link', true ) && function_exists( 'the_privacy_policy_link' ) ) {
+			$separator = '<span role="separator" aria-hidden="true"></span>';
+			$links_output = get_the_privacy_policy_link( '', ( ! empty( $links_output ) ? $separator : '' ) ) . $links_output;
+		}
+		
+		$links_output = apply_filters( 'storefront_credit_links_output', $links_output );
 		?>
 		<div class="site-info">
 			<?php echo esc_html( apply_filters( 'storefront_copyright_text', $content = '&copy; ' . get_bloginfo( 'name' ) . ' ' . date( 'Y' ) ) ); ?>
-			<?php if ( apply_filters( 'storefront_credit_link', true ) ) { ?>
-			<br />
-				<?php
-				if ( apply_filters( 'storefront_privacy_policy_link', true ) && function_exists( 'the_privacy_policy_link' ) ) {
-					the_privacy_policy_link( '', '<span role="separator" aria-hidden="true"></span>' );
-				}
-				?>
-				<?php echo '<a href="https://woocommerce.com" target="_blank" title="' . esc_attr__( 'WooCommerce - The Best eCommerce Platform for WordPress', 'storefront' ) . '" rel="author">' . esc_html__( 'Built with Storefront &amp; WooCommerce', 'storefront' ) . '</a>.'; ?>
+
+			<?php if ( ! empty( $links_output ) ) { ?>
+				<br />
+				<?php echo wp_kses_post( $links_output ); ?>
 			<?php } ?>
 		</div><!-- .site-info -->
 		<?php
@@ -312,6 +320,10 @@ if ( ! function_exists( 'storefront_page_header' ) ) {
 	 * @since 1.0.0
 	 */
 	function storefront_page_header() {
+		if ( is_front_page() && is_page_template( 'template-fullwidth.php' ) ) {
+			return;
+		}
+
 		?>
 		<header class="entry-header">
 			<?php
@@ -487,6 +499,32 @@ if ( ! function_exists( 'storefront_post_meta' ) ) {
 					'class'    => array(),
 				),
 			)
+		);
+	}
+}
+
+if ( ! function_exists( 'storefront_edit_post_link' ) ) {
+	/**
+	 * Display the edit link
+	 *
+	 * @since 2.5.0
+	 */
+	function storefront_edit_post_link() {
+		edit_post_link(
+			sprintf(
+				wp_kses(
+					/* translators: %s: Name of current post. Only visible to screen readers */
+					__( 'Edit <span class="screen-reader-text">%s</span>', 'storefront' ),
+					array(
+						'span' => array(
+							'class' => array(),
+						),
+					)
+				),
+				get_the_title()
+			),
+			'<div class="edit-link">',
+			'</div>'
 		);
 	}
 }
